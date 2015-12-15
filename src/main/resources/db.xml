@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <context:component-scan base-package="controller"/>
+    <!--<context:component-scan base-package="controller"/>-->
 
     <mvc:annotation-driven/>
 
@@ -28,7 +28,7 @@
 
     </bean>
 
-    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
@@ -104,16 +104,16 @@
         </property>
     </bean>
 
-    <bean id="category" class="logic.Category"/>
-    <bean id="group" class="logic.Group"/>
-    <bean id="httpUrlConnection" class="logic.HttpUrlConnection"/>
-    <bean id="person" class="logic.Person"/>
-    <bean id="post" class="logic.Post"/>
-    <bean id="predictor" class="logic.Predictor" scope="singleton" />
-    <bean id="record" class="logic.Record"/>
-    <bean id="statistics" class="logic.Staticstics"/>
-    <bean id="statisticsUpdater" class="logic.StatisticsUpdater"/>
-    <bean id="vocabulary" class="logic.Vocabulary" scope="singleton"/>
+    <!--<bean id="category" class="logic.Category"/>-->
+    <!--<bean id="group" class="logic.Group"/>-->
+    <!--<bean id="httpUrlConnection" class="logic.HttpUrlConnection"/>-->
+    <!--<bean id="person" class="logic.Person"/>-->
+    <!--<bean id="post" class="logic.Post"/>-->
+    <!--<bean id="predictor" class="logic.Predictor" scope="singleton" />-->
+    <!--&lt;!&ndash;<bean id="record" class="logic.Record"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<bean id="statistics" class="logic.Staticstics"/>&ndash;&gt;-->
+    <!--&lt;!&ndash;<bean id="statisticsUpdater" class="logic.StatisticsUpdater"/>&ndash;&gt;-->
+    <!--<bean id="vocabulary" class="logic.Vocabulary" scope="singleton"/>-->
 
 
 </beans>
