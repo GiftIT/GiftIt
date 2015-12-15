@@ -1,0 +1,119 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+    <context:component-scan base-package="controller"/>
+
+    <mvc:annotation-driven/>
+
+    <!--<mvc:resources mapping="/resources/**" />-->
+
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/resources/pages/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+
+    </bean>
+
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>classpath:jdbc.properties</value>
+        </property>
+    </bean>
+
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+    </bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="model.entity"/>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+                <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+                <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+                <prop key="hibernate.connection.useUnicode">${hibernate.useUnicode}</prop>
+                <prop key="hibernate.connection.characterEncoding">${hibernate.characterEncoding}</prop>
+                <prop key="hibernate.connection.charSet">${hibernate.CharSet}</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+
+    <!--<bean id="product" class="model.entity.Product"/>-->
+    <!--<bean id="sex" class="model.entity.Sex"/>-->
+    <!--<bean id="ageCategory" class="model.entity.AgeCategory"/>-->
+    <bean id="productDao" class="model.utility.CommonDaoJpa">
+        <constructor-arg>
+            <value>model.entity.Product</value>
+        </constructor-arg>
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="sexDao" class="model.utility.CommonDaoJpa">
+        <constructor-arg>
+            <value>model.entity.Sex</value>
+        </constructor-arg>
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="ageCategoryDao" class="model.utility.CommonDaoJpa">
+        <constructor-arg>
+            <value>model.entity.AgeCategory</value>
+        </constructor-arg>
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+    <bean id="countryDao" class="model.utility.CommonDaoJpa">
+        <constructor-arg>
+            <value>model.entity.Country</value>
+        </constructor-arg>
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="category" class="logic.Category"/>
+    <bean id="group" class="logic.Group"/>
+    <bean id="httpUrlConnection" class="logic.HttpUrlConnection"/>
+    <bean id="person" class="logic.Person"/>
+    <bean id="post" class="logic.Post"/>
+    <bean id="predictor" class="logic.Predictor" scope="singleton" />
+    <bean id="record" class="logic.Record"/>
+    <bean id="statistics" class="logic.Staticstics"/>
+    <bean id="statisticsUpdater" class="logic.StatisticsUpdater"/>
+    <bean id="vocabulary" class="logic.Vocabulary" scope="singleton"/>
+
+
+</beans>

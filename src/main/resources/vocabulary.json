@@ -1,0 +1,95 @@
+{
+  "categories":[
+    {
+      "category":"telephone",
+      "sites":[0],
+      "url":"/resources/images/phone.png",
+      "shop":"http://rozetka.com.ua/mobile-phones/c80003/filter/pre..",
+      "keys":[
+        "telephone", "smartphone", "mobile", "смартфон"
+      ]
+    },
+    {
+      "category":"tablet",
+      "sites":[0],
+      "url":"/resources/images/tablet.png",
+      "shop":"http://rozetka.com.ua/tablets/c130309/",
+      "keys":[
+        "tablet", "планшет"
+      ]
+    },
+    {
+      "category":"perfume",
+      "sites":[1],
+      "shop":"http://bomond.com.ua/ru/aromaty/podarky-y-nabory/C3136",
+      "url":"/resources/images/perfemu.jpg",
+      "keys":[
+        "perfume", "essence", "духи", "туалетная вода", "аромат", "букет", "парфюм"
+      ]
+    },{
+      "category":"cosmetics",
+      "sites":[1],
+      "shop":"http://bomond.com.ua/ru/makyyazh/lytso/C3174",
+      "url":"/resources/images/kosm.jpg",
+      "keys":[
+        "cosmetics", "косметика", "макияж", "блеск", "помада", "тушь", "пудра", "тени", "лак", "лосьен", "крем", "кондиционер", "подводка"
+      ]
+
+    },
+    {
+      "category":"camera",
+      "sites":[0],
+      "shop":"http://rozetka.com.ua/search/catalog/?text=camera",
+      "url":"/resources/images/camera.png",
+      "keys":[
+        "foto", "camera", "nikon", "canon", "фотоаппарат","фотик", "камера"
+      ]
+    },
+    {
+      "category":"laptop",
+      "sites":[0],
+      "shop":"http://rozetka.com.ua/notebooks/c80004/filter/",
+      "url":"/resources/images/laptop.png",
+      "keys":[
+        "laptop", "notebook", "ноутбук", "ноут"
+      ]
+    },
+    {
+      "category":"watches",
+      "sites":[0, 1],
+      "url":"/resources/images/watches.png",
+      "shop":"http://rozetka.com.ua/search/catalog/?text=часы&s..",
+      "keys":[
+        "watches", "часы"
+      ]
+    },
+    {
+      "category":"book",
+      "sites":[0],
+      "shop":"http://www.bookclub.ua/catalog/books/",
+      "url":"/resources/images/book.png",
+      "keys":[
+        "books", "book", "книга", "мемуары", "стихи", "стихотворения", "поэма"
+      ]
+    },
+    {
+      "category":"wear",
+      "sites":[0, 1],
+      "shop":"http://colins.ua/ua/",
+      "url":"/resources/images/tshirt.png",
+      "keys":[
+        "wear", "штаны", "брюки", "джинсы", "шорты", "бриджи", "футболка", "свитер", "худи", "пуловер", "жакет", "куртка", "пальто", "парка", "ветрока", "обувь", "кроссовки", "кроссовок", "туфли", "ботинки", "шапка", "кепка", "шарф"
+      ]
+    },
+    {
+      "category":"jewelry",
+      "sites":[0, 1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+        "jewelry", "драгоценности", "золото", "серебро", "колье", "кольцо", "ожерелье", "цепочка", "браслет", "сережки", "медальон"]
+    }
+
+  ]
+
+}
