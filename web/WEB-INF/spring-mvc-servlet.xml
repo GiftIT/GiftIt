@@ -4,10 +4,10 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="contextDB" class="model.utility.ApplicationContextSingl" factory-method="getInstance" lazy-init="false"
-          scope="singleton">
+    <!--<bean id="contextDB" class="model.utility.ApplicationContextSingl" factory-method="getInstance" lazy-init="false"-->
+          <!--scope="singleton">-->
 
-    </bean>
+    <!--</bean>-->
     <!--<bean id="serverInit" class="logic.ServletInit" init-method="init"/>-->
 
 
