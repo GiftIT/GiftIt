@@ -43,7 +43,7 @@ public class Predictor {
 
         Map<Category, Double> result = new HashMap<>();
 
-        ArrayList<Category> categories = Vocabulary.getInstance().getCategories();
+        Set<Category> categories = CategoryContainer.getInstance().getCategories();
 
         for(Category c : categories){
 

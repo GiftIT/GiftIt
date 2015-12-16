@@ -1,7 +1,11 @@
-package logic;
+package logic.webWorkers.vk;
 
 
 
+import logic.Category;
+import logic.CategoryContainer;
+import logic.connectors.HttpUrlConnection;
+import logic.webWorkers.Post;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -10,35 +14,34 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-import java.util.logging.Logger;
 
 /**
  * Created by vlad
  * Uses for get Array of relevant posts from group
  */
-public class Group {
+public class VkGroup {
 
     private int id;
     private long lastPost;
     private int internalId;
 
-    public static final String VK_API_VERSION = "5.40";
 
-    public Group(int id, int internalId,  long lastPost) {
+
+    public VkGroup(int id, int internalId, long lastPost) {
         this.id = id;
         this.lastPost = lastPost;
         this.internalId = internalId;
-        categories = Vocabulary.getInstance().getCategories();
+        categories = CategoryContainer.getInstance().getCategories();
 
     }
 
     private String composeRequest(int offset){
         StringBuilder result = new StringBuilder("wall.get?owner_id=-");
-        result.append(id).append("&count=100&offset=").append(offset).append("&v=").append(VK_API_VERSION);
+        result.append(id).append("&count=100&offset=").append(offset).append("&v=").append(VkWorker.VK_API_VERSION);
         return result.toString();
     }
 
-    ArrayList<Category> categories;
+    Set<Category> categories;
 
     /**
      * Inspect text for key words, and try to get category from this text
@@ -46,7 +49,6 @@ public class Group {
      * @return category or null if can't get category
      */
     private Category inspectCategory(String text){
-
 
         for(Category c : categories){
             if(c.getAllowedSite().contains(internalId)) {
@@ -57,21 +59,15 @@ public class Group {
                         return c;
                 }
             }
-
-
         }
-
-
         return null;
     }
 
     public Post[] getPosts(){
 
-
-
-        HttpUrlConnection connection = HttpUrlConnection.getInstance();
+        HttpUrlConnection connection = HttpUrlConnection.getConnection(HttpUrlConnection.VK);
         String request = composeRequest(0);
-        String response = connection.execute(request);
+        String response = connection.executeGET(request);
 
         List<Post> relevantPosts = new LinkedList<Post>();
 
@@ -100,7 +96,7 @@ public class Group {
                     Category category = inspectCategory(currentObject.getString("text").toLowerCase());
 
                     if(category != null)
-                        relevantPosts.add(new Post(this.id, id, category));
+                        relevantPosts.add(new VkPost(this.id, id, category));
                 }
 
 
@@ -108,7 +104,7 @@ public class Group {
                 reachEnd = reachEnd && (offset < count);
 
                 if(!reachEnd) {
-                    response = connection.execute(composeRequest(offset));
+                    response = connection.executeGET(composeRequest(offset));
                     items = new JSONObject(response).getJSONObject("response").getJSONArray("items");
                 }
 
@@ -119,7 +115,7 @@ public class Group {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return relevantPosts.toArray(new Post[0]);
+        return relevantPosts.toArray(new Post[relevantPosts.size()]);
     }
 
 
@@ -132,7 +128,7 @@ public class Group {
     }
 
 
-    public Group() {
+    public VkGroup() {
     }
 
     public void setId(int id) {
