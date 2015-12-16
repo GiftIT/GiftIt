@@ -12,10 +12,8 @@ public class AgeCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_age")
     private int idAge;
-    @Column(name = "left_age_limit")
-    private int leftAgeLimit;
-    @Column(name = "right_age_limit")
-    private int rightAgeLimit;
+    @Column(name = "age_tag")
+    private int ageTag;
     @Column(name = "number_likes")
     private long numberOfLikes;
     @ManyToOne
@@ -24,11 +22,10 @@ public class AgeCategory {
     public AgeCategory() {
     }
 
-    public AgeCategory(long numberOfLikes, Product product, int leftAgeLimit, int rightAgeLimit) {
+    public AgeCategory(int ageTag, long numberOfLikes, Product product) {
         this.numberOfLikes = numberOfLikes;
         this.product = product;
-        this.leftAgeLimit = leftAgeLimit;
-        this.rightAgeLimit = rightAgeLimit;
+        this.ageTag = ageTag;
     }
 
     public void addLikes(int likes) {
@@ -43,20 +40,12 @@ public class AgeCategory {
         this.idAge = idAge;
     }
 
-    public int getLeftAgeLimit() {
-        return leftAgeLimit;
+    public int getAgeTag() {
+        return ageTag;
     }
 
-    public void setLeftAgeLimit(int leftAgeLimit) {
-        this.leftAgeLimit = leftAgeLimit;
-    }
-
-    public int getRightAgeLimit() {
-        return rightAgeLimit;
-    }
-
-    public void setRightAgeLimit(int rightAgeLimit) {
-        this.rightAgeLimit = rightAgeLimit;
+    public void setAgeTag(int ageTag) {
+        this.ageTag = ageTag;
     }
 
     public long getNumberOfLikes() {

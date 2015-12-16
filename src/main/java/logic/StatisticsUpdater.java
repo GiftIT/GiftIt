@@ -55,14 +55,14 @@ public class StatisticsUpdater {
             sex.add(g);
             product.setSex(sex);
 
-            AgeCategory a1 = new AgeCategory("0", 0, product);
-            AgeCategory a2 = new AgeCategory("1", 0, product);
-            AgeCategory a3 = new AgeCategory("2", 0, product);
-            AgeCategory a4 = new AgeCategory("3", 0, product);
-            AgeCategory a5 = new AgeCategory("4", 0, product);
-            AgeCategory a6 = new AgeCategory("5", 0, product);
-            AgeCategory a7 = new AgeCategory("6", 0, product);
-            AgeCategory a8 = new AgeCategory("7", 0, product);
+            AgeCategory a1 = new AgeCategory(0, 0, product);
+            AgeCategory a2 = new AgeCategory(1, 0, product);
+            AgeCategory a3 = new AgeCategory(2, 0, product);
+            AgeCategory a4 = new AgeCategory(3, 0, product);
+            AgeCategory a5 = new AgeCategory(4, 0, product);
+            AgeCategory a6 = new AgeCategory(5, 0, product);
+            AgeCategory a7 = new AgeCategory(6, 0, product);
+            AgeCategory a8 = new AgeCategory(7, 0, product);
             List<AgeCategory> ages = new ArrayList<>();
             ages.add(a1);
             ages.add(a2);
