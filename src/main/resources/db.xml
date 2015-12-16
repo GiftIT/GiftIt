@@ -105,10 +105,10 @@
     </bean>
 
     <!--<bean id="category" class="logic.Category"/>-->
-    <!--<bean id="group" class="logic.Group"/>-->
-    <!--<bean id="httpUrlConnection" class="logic.HttpUrlConnection"/>-->
-    <!--<bean id="person" class="logic.Person"/>-->
-    <!--<bean id="post" class="logic.Post"/>-->
+    <!--<bean id="group" class="logic.webWorkers.vk.VkGroupup"/>-->
+    <!--<bean id="httpUrlConnection" class="logic.connectors.HttpUrlConnection"/>-->
+    <!--<bean id="person" class="logic.VkPersonon"/>-->
+    <!--<bean id="post" class="logic.VkPostst"/>-->
     <!--<bean id="predictor" class="logic.Predictor" scope="singleton" />-->
     <!--&lt;!&ndash;<bean id="record" class="logic.Record"/>&ndash;&gt;-->
     <!--&lt;!&ndash;<bean id="statistics" class="logic.Staticstics"/>&ndash;&gt;-->
