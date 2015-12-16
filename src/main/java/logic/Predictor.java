@@ -36,14 +36,14 @@ public class Predictor {
 
     }
 
-    public Map<Category, Double> getPrediction(int keySex, String ageBorders, String country){
+    public Map<Category, Double> getPrediction(int keySex, int ageTag, String country){
 
         new StatisticsUpdater();
 
 
         Map<Category, Double> result = new HashMap<>();
 
-        ArrayList<Category> categories = Vocabulary.getInstance().getCategories();
+        Set<Category> categories = CategoryContainer.getInstance().getCategories();
 
         for(Category c : categories){
 
@@ -58,7 +58,7 @@ public class Predictor {
             List<AgeCategory> ages = product.getAgeCategories();
             for(AgeCategory a : ages){
                 allAgesLikes += a.getNumberOfLikes();
-                if(a.getAgeRange().equals(ageBorders))
+                if(a.getAgeTag() == ageTag)
                     agesLikes = a.getNumberOfLikes();
             }
 
@@ -112,7 +112,7 @@ public class Predictor {
 
     public static void main(String[] args){
         Predictor p = Predictor.getInstance();
-        Map<Category, Double> m = p.getPrediction(1, "19-30", "2");
+        Map<Category, Double> m = p.getPrediction(1, 2, "2");
         Set<Category> categories = m.keySet();
         Category[] cats = new Category[categories.size()];
         categories.toArray(cats);

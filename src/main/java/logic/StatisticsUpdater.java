@@ -1,12 +1,17 @@
 package logic;
 
+import logic.webWorkers.Person;
+import logic.webWorkers.Post;
+import logic.webWorkers.Worker;
+import logic.webWorkers.vk.VkGroup;
+import logic.webWorkers.vk.VkPost;
+import logic.webWorkers.vk.VkWorker;
 import model.entity.AgeCategory;
 import model.entity.Country;
 import model.entity.Product;
 import model.entity.Sex;
 import model.utility.GenericDao;
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -22,46 +27,42 @@ import java.util.Set;
  */
 public class StatisticsUpdater {
 
-    private Group[] registeredGroups;
+    private ArrayList<Worker> workers;
 
-    //todo: delete and replace with database
-
-
-
-    /**
-     * Return json representation of group to save information about it
-     * @param g group to be saved
-     * @return json representation
-     */
-    private String toJSON(Group g){
-        return "{\n" + "\"group_id\":" + g.getId() + ",\n\"last_post\":" + g.getLastPost() + "\n}";
-    }
+    private GenericDao productDao;
 
     public StatisticsUpdater(){
-
+        workers = new ArrayList<>();
         ApplicationContext context = new ClassPathXmlApplicationContext("db.xml");
-        GenericDao productDao = (GenericDao) context.getBean("productDao");
+        productDao = (GenericDao) context.getBean("productDao");
+    }
 
-//        GenericDao countryDao = (GenericDao) context.getBean("countryDao");
+    public void addWorker(Worker w){
+        workers.add(w);
+    }
 
-        ArrayList<Category> categories = Vocabulary.getInstance().getCategories();
+    public void dropTable(){
+
+        Set<Category> categories = CategoryContainer.getInstance().getCategories();
+
+        //creates empty database
         for(Category c : categories) {
             Product product = new Product(c.getType());
-            Sex m = new Sex("m", 0, product);
             Sex g = new Sex("g", 0, product);
+            Sex m = new Sex("m", 0, product);
             List<Sex> sex = new ArrayList<>();
             sex.add(m);
             sex.add(g);
             product.setSex(sex);
 
-            AgeCategory a1 = new AgeCategory("0-6", 0, product);
-            AgeCategory a2 = new AgeCategory("7-10", 0, product);
-            AgeCategory a3 = new AgeCategory("11-15", 0, product);
-            AgeCategory a4 = new AgeCategory("16-18", 0, product);
-            AgeCategory a5 = new AgeCategory("19-30", 0, product);
-            AgeCategory a6 = new AgeCategory("31-40", 0, product);
-            AgeCategory a7 = new AgeCategory("41-50", 0, product);
-            AgeCategory a8 = new AgeCategory("51-100", 0, product);
+            AgeCategory a1 = new AgeCategory(0, 0, product);
+            AgeCategory a2 = new AgeCategory(1, 0, product);
+            AgeCategory a3 = new AgeCategory(2, 0, product);
+            AgeCategory a4 = new AgeCategory(3, 0, product);
+            AgeCategory a5 = new AgeCategory(4, 0, product);
+            AgeCategory a6 = new AgeCategory(5, 0, product);
+            AgeCategory a7 = new AgeCategory(6, 0, product);
+            AgeCategory a8 = new AgeCategory(7, 0, product);
             List<AgeCategory> ages = new ArrayList<>();
             ages.add(a1);
             ages.add(a2);
@@ -78,119 +79,35 @@ public class StatisticsUpdater {
             productDao.create(product);
 
         }
-        //load groups list
-        try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("/groups.json")));
-            StringBuilder res = new StringBuilder();
-            String line;
-            while((line = reader.readLine()) != null){
-                res.append(line.trim());
-            }
-            JSONObject ob = new JSONObject(res.toString());
-            JSONArray groups = ob.getJSONArray("groups");
-            registeredGroups = new Group[groups.length()];
-            for(int i = 0; i < groups.length(); i++){
-                JSONObject o = groups.getJSONObject(i);
-                int id = o.getInt("group_id");
-                long date = o.getLong("last_post");
-                int internalId = o.getInt("internal_id");
-                registeredGroups[i] = new Group(id, internalId, date);
-            }
 
-            reader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+    }
 
+    public void updateStatistic(){
+        Person.updateYear();
+        for(Worker w : workers){
+            while(w.hasPost()){
 
-        String jsonToWrite = "{\n\"groups\":[\n";
-
-
-        //load info from all registered groups
-        for(Group g : registeredGroups){
-
-            //load latest posts
-            Post[] posts = g.getPosts();
-
-            //uses for debug
-            //todo: delete
-
-            System.out.println("--------------------------------------------------------");
-            System.out.println("--------------------------------------------------------");
-            System.out.println("--------------------------------------------------------");
-            System.out.println("Found " + posts.length + " posts");
-            System.out.println("--------------------------------------------------------");
-            System.out.println("--------------------------------------------------------");
-            System.out.println("--------------------------------------------------------");
-            //get info from each post
-            for(int i = 0; i < posts.length; i++){
-                Post p = posts[i];
-
-                Product product = (Product) productDao.find(p.getCategory().getType());
-//                product
-
-                Integer[] ids = p.getIds();
-
-                //uses for debug
-                System.out.println(ids.length + " likes");
-
-
-                Person.updateYear();
-                int amount = 400;
-                List<Person> allPerson = new LinkedList<Person>();
-                for(int j = 0; j < ids.length; ){
-                    if(j + amount > ids.length)
-                        amount = ids.length - j;
-
-                    Integer[] currentIds = new Integer[amount];
-                    System.arraycopy(ids, j, currentIds, 0, amount);
-                    allPerson.addAll(Person.createPersons(currentIds));
-
-                    j+= amount;
+                try {
+                    Thread.sleep(25);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
 
-//                System.out.println(allPerson.size());
-                int male = 0;
-                int female = 0;
-                int a1 = 0;
-                int a2 = 0;
-                int a3 = 0;
-                int a4 = 0;
-                int a5 = 0;
-                int a6 = 0;
-                int a7 = 0;
-                int a8 = 0;
-                for(Person person : allPerson){
+                Post p = w.getNextPost();
+                Product product = (Product) productDao.find(p.getCategory().getType());
+                Person[] persons = p.getPersons();
 
-                    if(person.getSex() == 1)
-                        female++;
-                    else if(person.getSex() == 2)
-                        male++;
+                int[] sex = new int[2];
+                int[] age = new int[8];
 
-                    if(person.hasAge()){
-                        int age = person.getAge();
-                        if(age <= 6)
-                            a1++;
-                        else if(age > 6 && age <= 10)
-                            a2++;
-                        else if(age > 10 && age <= 15)
-                            a3++;
-                        else if(age > 15 && age <= 18)
-                            a4++;
-                        else if(age > 18 && age <= 30)
-                            a5++;
-                        else if(age > 30 && age <= 40)
-                            a6++;
-                        else if(age > 40 && age <= 50)
-                            a7++;
-                        else
-                            a8++;
+                for(Person person : persons) {
+                    if(person.hasSex()) {
+                        sex[person.getSex()]++;
                     }
-
-                    if(person.getCountry() != null){
-
+                    if(person.hasAge()) {
+                        age[person.getAgeCategory()]++;
+                    }
+                    if(person.hasCountry()) {
                         String personCountry = person.getCountry();
 
                         List<Country> countries = product.getCountry();
@@ -204,66 +121,31 @@ public class StatisticsUpdater {
                         }
 
                         if(!found){
-                            Country newCountry = new Country(personCountry, 0, product);
+                            Country newCountry = new Country(personCountry, 1, product);
                             countries.add(newCountry);
                         }
-
                     }
                 }
 
-                product.getSex().get(0).addLikes(male);
-                product.getSex().get(1).addLikes(female);
-
+                product.getSex().get(0).addLikes(sex[0]);
+                product.getSex().get(1).addLikes(sex[1]);
                 List<AgeCategory> ages = product.getAgeCategories();
-                ages.get(0).addLikes(a1);
-                ages.get(1).addLikes(a2);
-                ages.get(2).addLikes(a3);
-                ages.get(3).addLikes(a4);
-                ages.get(4).addLikes(a5);
-                ages.get(5).addLikes(a6);
-                ages.get(6).addLikes(a7);
-                ages.get(7).addLikes(a8);
-
+                for(int i = 0; i < age.length; i++) {
+                    ages.get(i).addLikes(age[i]);
+                }
                 product.addPosts();
-
                 productDao.update(product);
-//                staticstics.add(current);
-
             }
-
         }
-
-        //save groups
-        jsonToWrite += toJSON(registeredGroups[0]);
-
-        for(int i = 1; i < registeredGroups.length; i++){
-            jsonToWrite +=  ",\n" +toJSON(registeredGroups[i]);
-        }
-
-        jsonToWrite += "]\n}";
-
-
-        //todo: enable saving, for now it is not necessary
-//        BufferedWriter writer = null;
-//        try {
-//            writer = new BufferedWriter(new FileWriter(new File("src/resources/groups.json")));
-//            writer.write(jsonToWrite);
-//            writer.close();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
     }
 
-//    public void show(){
-//        for(Staticstics s : staticstics){
-//            System.out.println(s.toString());
-//        }
-//    }
+
 
     public static void main(String[] args){
         StatisticsUpdater updater = new StatisticsUpdater();
+        updater.dropTable();
+        updater.addWorker(new VkWorker());
+        updater.updateStatistic();
 //        updater.show();
     }
 
