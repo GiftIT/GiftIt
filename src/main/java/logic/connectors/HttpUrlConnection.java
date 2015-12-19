@@ -118,7 +118,7 @@ public abstract class HttpUrlConnection {
             while(in == null && times <= 5) {
                 try {
                     //if server does not correspond this line will produce an exception
-                    in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                    in = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
                 }catch (IOException e){
                     times++;
                     System.out.println("Cannot create input stream. " + times + " times attempt. Trying again after 100 ms");

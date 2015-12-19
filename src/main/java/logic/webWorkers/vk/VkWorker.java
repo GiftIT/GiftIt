@@ -45,7 +45,7 @@ public class VkWorker implements Worker {
     private void loadGroupsInfo(){
         try {
             String groupConfig = Config.getInstance().getParamenter("groups.config");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(groupConfig)));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(groupConfig),"UTF-8"));
             StringBuilder res = new StringBuilder();
             String line;
             while((line = reader.readLine()) != null){
