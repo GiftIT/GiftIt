@@ -32,7 +32,7 @@ public class Config {
         fillDefaultProperties();
 
         try {
-            BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName)));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName),"UTF-8"));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] tokens = line.split("=");

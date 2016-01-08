@@ -29,7 +29,7 @@ public class CategoryContainer {
         categories = new HashSet<>();
         String fileName = Config.getInstance().getParamenter("vocabulary.config");
         try{
-            BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName)));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName),"UTF-8"));
             StringBuffer buffer = new StringBuffer();
             String line;
             while((line = reader.readLine()) != null){

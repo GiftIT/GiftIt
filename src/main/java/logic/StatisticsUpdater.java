@@ -1,5 +1,6 @@
 package logic;
 
+import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
 import logic.webWorkers.Person;
 import logic.webWorkers.Post;
 import logic.webWorkers.Worker;
@@ -25,28 +26,28 @@ import java.util.Set;
 /**
  * Updates statistics
  */
-public class StatisticsUpdater {
+public class StatisticsUpdater implements Runnable {
 
     private ArrayList<Worker> workers;
 
     private GenericDao productDao;
 
-    public StatisticsUpdater(){
+    public StatisticsUpdater() {
         workers = new ArrayList<>();
         ApplicationContext context = new ClassPathXmlApplicationContext("db.xml");
         productDao = (GenericDao) context.getBean("productDao");
     }
 
-    public void addWorker(Worker w){
+    public void addWorker(Worker w) {
         workers.add(w);
     }
 
-    public void dropTable(){
+    public void dropTable() {
 
         Set<Category> categories = CategoryContainer.getInstance().getCategories();
 
         //creates empty database
-        for(Category c : categories) {
+        for (Category c : categories) {
             Product product = new Product(c.getType());
             Sex g = new Sex("g", 0, product);
             Sex m = new Sex("m", 0, product);
@@ -82,10 +83,10 @@ public class StatisticsUpdater {
 
     }
 
-    public void updateStatistic(){
+    public void updateStatistic() {
         Person.updateYear();
-        for(Worker w : workers){
-            while(w.hasPost()){
+        for (Worker w : workers) {
+            while (w.hasPost()) {
 
                 try {
                     Thread.sleep(25);
@@ -100,27 +101,27 @@ public class StatisticsUpdater {
                 int[] sex = new int[2];
                 int[] age = new int[8];
 
-                for(Person person : persons) {
-                    if(person.hasSex()) {
+                for (Person person : persons) {
+                    if (person.hasSex()) {
                         sex[person.getSex()]++;
                     }
-                    if(person.hasAge()) {
+                    if (person.hasAge()) {
                         age[person.getAgeCategory()]++;
                     }
-                    if(person.hasCountry()) {
+                    if (person.hasCountry()) {
                         String personCountry = person.getCountry();
 
                         List<Country> countries = product.getCountry();
                         boolean found = false;
-                        for(Country c : countries){
-                            if(c.getCountry().equals(personCountry)) {
+                        for (Country c : countries) {
+                            if (c.getCountry().equals(personCountry)) {
                                 found = true;
                                 c.addLikes();
                                 break;
                             }
                         }
 
-                        if(!found){
+                        if (!found) {
                             Country newCountry = new Country(personCountry, 1, product);
                             countries.add(newCountry);
                         }
@@ -130,7 +131,7 @@ public class StatisticsUpdater {
                 product.getSex().get(0).addLikes(sex[0]);
                 product.getSex().get(1).addLikes(sex[1]);
                 List<AgeCategory> ages = product.getAgeCategories();
-                for(int i = 0; i < age.length; i++) {
+                for (int i = 0; i < age.length; i++) {
                     ages.get(i).addLikes(age[i]);
                 }
                 product.addPosts();
@@ -140,13 +141,12 @@ public class StatisticsUpdater {
     }
 
 
-
-    public static void main(String[] args){
-        StatisticsUpdater updater = new StatisticsUpdater();
-        updater.dropTable();
-        updater.addWorker(new VkWorker());
-        updater.updateStatistic();
-//        updater.show();
+    @Override
+    public void run() {
+        this.dropTable();
+        this.addWorker(new VkWorker());
+        this.updateStatistic();
+        System.out.println("finish!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
 }
