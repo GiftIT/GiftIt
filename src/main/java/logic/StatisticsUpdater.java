@@ -5,11 +5,13 @@ import logic.webWorkers.Post;
 import logic.webWorkers.Worker;
 import logic.webWorkers.vk.VkWorker;
 import model.entity.*;
+import model.utility.CommonDaoJpa;
 import model.utility.GenericDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -22,9 +24,11 @@ public class StatisticsUpdater implements Runnable {
 
     private GenericDao productDao;
 
+    ApplicationContext context;
+
     public StatisticsUpdater() {
         workers = new ArrayList<>();
-        ApplicationContext context = new ClassPathXmlApplicationContext("db.xml");
+        context = new ClassPathXmlApplicationContext("db.xml");
         productDao = (GenericDao) context.getBean("productDao");
     }
 
@@ -49,6 +53,8 @@ public class StatisticsUpdater implements Runnable {
 
     public void updateStatistic() {
         Person.updateYear();
+        int deleted = 0;
+        int all = 0;
         for (Worker w : workers) {
             while (w.hasPost()) {
 
@@ -67,17 +73,18 @@ public class StatisticsUpdater implements Runnable {
                 for (Person person : persons) {
 
                     User user = new User();
+                    all++;
                     if (person.hasSex()) {
                         user.setSex(person.getSex());
 //                        sex[person.getSex()]++;
-                    }
+                    }else {deleted++; continue;};
                     if (person.hasAge()) {
                         user.setAge(person.getAgeCategory());
-                    }
+                    } else {deleted++; continue;};
                     if (person.hasCountry()) {
 
                         user.setCountry(person.getCountry());
-                    }
+                    } else {deleted++; continue;};
                     user.setProduct(product);
 
                     if(product.contains(user.getSex(), user.getAge(), user.getCountry())){
@@ -100,8 +107,22 @@ public class StatisticsUpdater implements Runnable {
                 productDao.update(product);
             }
         }
+        System.out.println(1.0*deleted/all);
     }
 
+    public String[] getData(){
+        GenericDao dao = (GenericDao)context.getBean("userDao");
+        List<User> users = dao.findAll();
+        List<String> result = new LinkedList<>();
+        for(int i = 0; i < users.size(); i++){
+            User u = users.get(i);
+            String s = new StringBuilder(u.getSex()).append(" ").append(u.getAge()).append(" ").append(u.getProduct()).append("\n").toString();
+            for(int j = 0; j < users.get(i).getAmount(); j++){
+                result.add(s);
+            }
+        }
+        return result.toArray(new String[result.size()]);
+    }
 
     @Override
     public void run() {
@@ -115,6 +136,7 @@ public class StatisticsUpdater implements Runnable {
         System.out.println(System.currentTimeMillis());
         StatisticsUpdater su = new StatisticsUpdater();
         su.run();
+        System.out.println(su.getData().length);
     }
 
 }

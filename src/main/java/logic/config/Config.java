@@ -1,7 +1,6 @@
 package logic.config;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 
@@ -20,7 +19,7 @@ public class Config {
 
     private void fillDefaultProperties(){
         values.put("vocabulary.config", "/vocabulary.json");
-        values.put("groups.config", "/groups.json");
+        values.put("vkgroups.config", "/vkgroups.json");
     }
 
     public String getParamenter(String key){

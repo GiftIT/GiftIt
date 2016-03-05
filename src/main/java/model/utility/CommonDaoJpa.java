@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Бабенко on 7/9/2015.
@@ -83,5 +84,10 @@ public class CommonDaoJpa<T, PK extends Serializable> implements GenericDao<T, P
         }
     }
 
+    @Override
+    @Transactional
+    public List<T> findAll(){
+        return sessionFactory.getCurrentSession().createCriteria(type).list();
+    }
 
 }
