@@ -126,6 +126,9 @@ public class StatisticsUpdater implements Runnable {
 
     @Override
     public void run() {
+
+
+
         this.dropTable();
         this.addWorker(new VkWorker());
         this.updateStatistic();
@@ -136,7 +139,12 @@ public class StatisticsUpdater implements Runnable {
         System.out.println(System.currentTimeMillis());
         StatisticsUpdater su = new StatisticsUpdater();
         su.run();
-        System.out.println(su.getData().length);
+        String[] data = su.getData();
+        StringBuilder b = new StringBuilder();
+        for(String s : data){
+            b.append(s);
+        }
+        System.out.println(b.toString().length());
     }
 
 }
