@@ -125,8 +125,10 @@ public class StatisticsUpdater implements Runnable {
         List<User> users = dao.findAll();
         List<String> result = new LinkedList<>();
         for (int i = 0; i < users.size(); i++) {
+//            if(users.get(i).getProduct().getIdProduct() == 10 || users.get(i).getProduct().getIdProduct() == 5)
+//                continue;
             User u = users.get(i);
-            String s = new StringBuilder(u.getSex()).append(",").append(u.getAge()).append(",").append(u.getProduct()).append(",").toString();
+            String s = new StringBuilder(""+u.getSex()).append(",").append(u.getAge()).append(",").append(u.getCountry()).append(",").append(u.getProduct().getName()).append(",").toString();
             for (int j = 0; j < users.get(i).getAmount(); j++) {
                 result.add(s);
             }

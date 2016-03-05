@@ -1,26 +1,16 @@
 package logic;
 
-import java.io.File;
-
 import net.sf.javaml.classification.Classifier;
 import net.sf.javaml.classification.KNearestNeighbors;
+import net.sf.javaml.classification.evaluation.EvaluateDataset;
+import net.sf.javaml.classification.evaluation.PerformanceMeasure;
 import net.sf.javaml.core.Dataset;
 import net.sf.javaml.core.Instance;
 import net.sf.javaml.tools.data.FileHandler;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
-import java.util.Iterator;
 import java.util.Map;
-
-import net.sf.javaml.classification.Classifier;
-import net.sf.javaml.classification.KNearestNeighbors;
-import net.sf.javaml.classification.evaluation.EvaluateDataset;
-import net.sf.javaml.classification.evaluation.PerformanceMeasure;
-import net.sf.javaml.core.Dataset;
-import net.sf.javaml.tools.data.FileHandler;
-import net.sf.javaml.tools.data.StreamHandler;
 
 public class ClassificationProcessor implements DataProcessor {
 
@@ -30,7 +20,14 @@ public class ClassificationProcessor implements DataProcessor {
         Dataset data = FileHandler.loadDataset(file, columnNumber, ",");
         classifier = new KNearestNeighbors(5);
         classifier.buildClassifier(data);
+        Dataset dataForClassification = FileHandler.loadDataset(file, columnNumber, ",");
+
+//        Map<Object, PerformanceMeasure> pm = EvaluateDataset.testDataset(classifier, dataForClassification);
+//        for (Object o : pm.keySet())
+//            System.out.println(o + ": " + pm.get(o).getAccuracy());
     }
+
+
 
     @Override
     public Object classify(Instance instance) {

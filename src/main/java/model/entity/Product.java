@@ -118,13 +118,13 @@ public class Product {
         this.users = users;
     }
 
-    public boolean contains(int sex, int age, String country){
+    public boolean contains(int sex, int age, int country){
         return get(sex, age, country) != null;
     }
 
-    public User get(int sex, int age, String country){
+    public User get(int sex, int age, int country){
         for(User u : users){
-            if(u.getSex() == sex && u.getAge() == age && u.getCountry().equals(country))
+            if(u.getSex() == sex && u.getAge() == age && u.getCountry() == country)
                 return u;
         }
 

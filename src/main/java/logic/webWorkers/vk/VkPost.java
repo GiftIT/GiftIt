@@ -116,7 +116,7 @@ public class VkPost extends Post{
                 }
 
                 if (currentObject.has("country")) {
-                    current.setCountry(currentObject.getJSONObject("country").getString("title"));
+                    current.setCountry(currentObject.getJSONObject("country").getInt("id"));
                 }
                 if (currentObject.has("bdate")) {
                     String dateString = currentObject.getString("bdate");

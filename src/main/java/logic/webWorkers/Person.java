@@ -9,7 +9,7 @@ public class Person {
 
     private int sex;
     private int ageCategory;
-    private String country;
+    private int country;
 
     private static int year;
     public static int getYear(){
@@ -23,9 +23,10 @@ public class Person {
     public Person() {
         sex = -1;
         ageCategory = -1;
+        country = -1;
     }
 
-    public Person(int sex, int ageCategory, String country) {
+    public Person(int sex, int ageCategory, int country) {
         this.sex = sex;
         this.ageCategory = ageCategory;
         this.country = country;
@@ -40,7 +41,7 @@ public class Person {
     }
 
     public boolean hasCountry(){
-        return country != null;
+        return country != -1;
     }
 
     public int getSex() {
@@ -48,7 +49,7 @@ public class Person {
     }
 
     public void setSex(int sex) {
-        this.sex = sex;
+        this.sex = sex*100;
     }
 
     public int getAgeCategory() {
@@ -57,29 +58,30 @@ public class Person {
 
     public void setAge(int age) {
 
-        if(age <= 12)
-            this.ageCategory = 0;
-        else if( age > 12 && age <= 16)
-            this.ageCategory = 1;
-        else if( age > 16 && age <= 20)
-            this.ageCategory = 2;
-        else if( age > 20 && age <= 25)
-            this.ageCategory = 3;
-        else if( age > 25 && age <= 35)
-            this.ageCategory = 4;
-        else if( age > 35 && age <= 45)
-            this.ageCategory = 5;
-        else if( age > 45 && age <= 60)
-            this.ageCategory = 6;
-        else
-            this.ageCategory = 7;
+        this.ageCategory = age;
+//        if(age <= 12)
+//            this.ageCategory = 0;
+//        else if( age > 12 && age <= 16)
+//            this.ageCategory = 1;
+//        else if( age > 16 && age <= 20)
+//            this.ageCategory = 2;
+//        else if( age > 20 && age <= 25)
+//            this.ageCategory = 3;
+//        else if( age > 25 && age <= 35)
+//            this.ageCategory = 4;
+//        else if( age > 35 && age <= 45)
+//            this.ageCategory = 5;
+//        else if( age > 45 && age <= 60)
+//            this.ageCategory = 6;
+//        else
+//            this.ageCategory = 7;
     }
 
-    public String getCountry() {
+    public int getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(int country) {
+        this.country = country*100;
     }
 }
