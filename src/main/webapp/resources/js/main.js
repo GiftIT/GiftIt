@@ -36,12 +36,12 @@ function printAges(sex) {
     var div;
     var innerDiv;
     for (var i = 1; i <= 8; i++) {
-        div = document.createElement("div");
+        div = document.createElement("div" );
         $(div).css({"margin": "3% auto 0"});
         div.setAttribute("class", "col-sm-3");
         innerDiv = document.createElement("div");
         innerDiv.setAttribute("class", "age-images");
-        $(innerDiv).css({"background-image": 'url("img/' + (str + i) + '.PNG")'});
+        $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.PNG")'});
         div.appendChild(innerDiv);
         div.innerHTML += '<h3>' + ages[i - 1] + '</h3>';
         image.appendChild(div);

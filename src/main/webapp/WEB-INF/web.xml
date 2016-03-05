@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
-    <display-name>Spring Web MVC Application</display-name>
+    <display-name>GiftIt</display-name>
 
     <servlet>
         <servlet-name>spring-mvc</servlet-name>
@@ -19,22 +19,16 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+
     <context-param>
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:db.xml</param-value>
     </context-param>
-
-
-    <!--delete later-->
-
-    <!--<listener>-->
-    <!--<listener-class>-->
-    <!--org.springframework.web.context.ContextLoaderListener-->
-    <!--</listener-class>-->
-    <!--</listener>-->
-
-
-
 
 
 </web-app>

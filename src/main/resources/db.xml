@@ -11,24 +11,8 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-    <!--<context:component-scan base-package="controller"/>-->
 
     <mvc:annotation-driven/>
-
-    <!--<mvc:resources mapping="/resources/**" />-->
-
-
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/resources/pages/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-
-    </bean>
-
-    <!--<mvc:resources mapping="/resources/**" location="/resources/"/>-->
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
