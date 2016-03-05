@@ -1,9 +1,5 @@
 package logic;
 
-import model.entity.AgeCategory;
-import model.entity.Country;
-import model.entity.Product;
-import model.entity.Sex;
 import model.utility.GenericDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -38,76 +34,77 @@ public class Predictor {
 
     public Map<Category, Double> getPrediction(int keySex, int ageTag, String country){
 
-        new StatisticsUpdater();
+//        new StatisticsUpdater();
+//
+//
+//        Map<Category, Double> result = new HashMap<>();
+//
+//        Set<Category> categories = CategoryContainer.getInstance().getCategories();
+//
+//        for(Category c : categories){
+//
+//            Product product = (Product) productDao.find(c.getType());
+//
+//            Sex sex = product.getSex().get(keySex);
+//            long sexLikes = sex.getNumberOfLikes();
+//            long allSexLikes = sexLikes + product.getSex().get(keySex^1).getNumberOfLikes();
+//
+//            long agesLikes = 0;
+//            long allAgesLikes = 0;
+//            List<AgeCategory> ages = product.getAgeCategories();
+//            for(AgeCategory a : ages){
+//                allAgesLikes += a.getNumberOfLikes();
+//                if(a.getAgeTag() == ageTag)
+//                    agesLikes = a.getNumberOfLikes();
+//            }
+//
+//            //todo: for country
+//            long countryLikes = 0;
+//            long allCountryLikes = 0;
+//            List<Country> countries = product.getCountry();
+//            for(Country country1 : countries){
+//                allCountryLikes += country1.getNumberOfLikes();
+//                if(country1.getCountry().equals(country)) {
+//                    System.out.println("Country hash equals");
+//                    countryLikes = country1.getNumberOfLikes();
+//                }
+//            }
+//            if(countryLikes == 0){
+//                countryLikes = allCountryLikes;
+//            }
+//
+//
+//            //todo: consider weigths, but for now it is okay
+//            double sexWeigth = 1.0*sexLikes/allSexLikes;
+//            double ageWeigth = 1.0*agesLikes/allAgesLikes;
+//            double countryWeigth = 1.0*countryLikes/allCountryLikes;
+//
+//            double sexW = 1*sexWeigth;
+//            double ageW = 1*ageWeigth;
+//            double countW = 1*countryWeigth;
+//            double sexAgeW = 1*sexWeigth*ageWeigth;
+//            double sexCountW = 1*sexWeigth*countryWeigth;
+//            double ageCountW = 1*ageWeigth*countryWeigth;
+//            double mulW = 1*sexWeigth*ageWeigth*countryWeigth;
+//
+//            System.out.println(product.getName());
+//            System.out.println("s:  " + sexW);
+//            System.out.println("a:  " + ageW);
+//            System.out.println("c:  " + countW);
+//            System.out.println("sa: " + sexAgeW);
+//            System.out.println("sc: " + sexCountW);
+//            System.out.println("ac: " + ageCountW);
+//            System.out.println("sac:" + mulW);
+//
+//
+//
+//            double sumWeigth = sexW+ageW+countW+sexAgeW+sexCountW+ageCountW+mulW;
+//            result.put(c, sumWeigth);
+//        }
+//
+//        return result;
 
-
-        Map<Category, Double> result = new HashMap<>();
-
-        Set<Category> categories = CategoryContainer.getInstance().getCategories();
-
-        for(Category c : categories){
-
-            Product product = (Product) productDao.find(c.getType());
-
-            Sex sex = product.getSex().get(keySex);
-            long sexLikes = sex.getNumberOfLikes();
-            long allSexLikes = sexLikes + product.getSex().get(keySex^1).getNumberOfLikes();
-
-            long agesLikes = 0;
-            long allAgesLikes = 0;
-            List<AgeCategory> ages = product.getAgeCategories();
-            for(AgeCategory a : ages){
-                allAgesLikes += a.getNumberOfLikes();
-                if(a.getAgeTag() == ageTag)
-                    agesLikes = a.getNumberOfLikes();
-            }
-
-            //todo: for country
-            long countryLikes = 0;
-            long allCountryLikes = 0;
-            List<Country> countries = product.getCountry();
-            for(Country country1 : countries){
-                allCountryLikes += country1.getNumberOfLikes();
-                if(country1.getCountry().equals(country)) {
-                    System.out.println("Country hash equals");
-                    countryLikes = country1.getNumberOfLikes();
-                }
-            }
-            if(countryLikes == 0){
-                countryLikes = allCountryLikes;
-            }
-
-
-            //todo: consider weigths, but for now it is okay
-            double sexWeigth = 1.0*sexLikes/allSexLikes;
-            double ageWeigth = 1.0*agesLikes/allAgesLikes;
-            double countryWeigth = 1.0*countryLikes/allCountryLikes;
-
-            double sexW = 1*sexWeigth;
-            double ageW = 1*ageWeigth;
-            double countW = 1*countryWeigth;
-            double sexAgeW = 1*sexWeigth*ageWeigth;
-            double sexCountW = 1*sexWeigth*countryWeigth;
-            double ageCountW = 1*ageWeigth*countryWeigth;
-            double mulW = 1*sexWeigth*ageWeigth*countryWeigth;
-
-            System.out.println(product.getName());
-            System.out.println("s:  " + sexW);
-            System.out.println("a:  " + ageW);
-            System.out.println("c:  " + countW);
-            System.out.println("sa: " + sexAgeW);
-            System.out.println("sc: " + sexCountW);
-            System.out.println("ac: " + ageCountW);
-            System.out.println("sac:" + mulW);
-
-
-
-            double sumWeigth = sexW+ageW+countW+sexAgeW+sexCountW+ageCountW+mulW;
-            result.put(c, sumWeigth);
-        }
-
-        return result;
-
+        return null;
     }
 
     public static void main(String[] args){

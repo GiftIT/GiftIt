@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -97,6 +98,7 @@ public class VkPost extends Post{
     }
 
     private List<Person> loadInfo(List<Integer> ids){
+
 
         String request = composeRequest(ids);
         String response = connection.executeGET(request);

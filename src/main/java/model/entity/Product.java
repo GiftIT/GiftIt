@@ -5,6 +5,8 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -22,35 +24,37 @@ public class Product {
     @Column(name = "posts")
     private int posts;
 
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @OneToMany(mappedBy = "product")
+//    private List<Sex> sex;
+
+
+//    @LazyCollection(LazyCollectionOption.FALSE)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @OneToMany(mappedBy = "product")
+//    private List<AgeCategory> ageCategories;
+
+    //    @LazyCollection(LazyCollectionOption.FALSE)
+//    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+//    @OneToMany(mappedBy = "product")
+//    private List<Country> country;
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @OneToMany(mappedBy = "product")
-    private List<Sex> sex;
-
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @OneToMany(mappedBy = "product")
-    private List<AgeCategory> ageCategories;
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
-    @OneToMany(mappedBy = "product")
-    private List<Country> country;
+    private List<User> users;
 
     public Product() {
+        users = new LinkedList<>();
     }
 
     public Product(String name) {
         this.name = name;
+        users = new LinkedList<>();
     }
 
-    public Product(String name, int posts, List<Sex> sex, List<AgeCategory> ageCategories) {
-        this.name = name;
-        this.posts = posts;
-        this.sex = sex;
-        this.ageCategories = ageCategories;
-    }
+
 
     public void addPosts() {
         this.posts++;
@@ -81,28 +85,49 @@ public class Product {
         this.posts = posts;
     }
 
-    public List<Sex> getSex() {
-        return sex;
+//    public List<Sex> getSex() {
+//        return sex;
+//    }
+//
+//    public void setSex(List<Sex> sex) {
+//        this.sex = sex;
+//    }
+//
+//    public List<AgeCategory> getAgeCategories() {
+//        return ageCategories;
+//    }
+//
+//    public void setAgeCategories(List<AgeCategory> ageCategories) {
+//        this.ageCategories = ageCategories;
+//    }
+//
+//    public List<Country> getCountry() {
+//        return country;
+//    }
+//
+//    public void setCountry(List<Country> country) {
+//        this.country = country;
+//    }
+
+
+    public List<User> getUsers () {
+        return users;
     }
 
-    public void setSex(List<Sex> sex) {
-        this.sex = sex;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
-    public List<AgeCategory> getAgeCategories() {
-        return ageCategories;
+    public boolean contains(int sex, int age, String country){
+        return get(sex, age, country) != null;
     }
 
-    public void setAgeCategories(List<AgeCategory> ageCategories) {
-        this.ageCategories = ageCategories;
-    }
+    public User get(int sex, int age, String country){
+        for(User u : users){
+            if(u.getSex() == sex && u.getAge() == age && u.getCountry().equals(country))
+                return u;
+        }
 
-    public List<Country> getCountry() {
-        return country;
+        return null;
     }
-
-    public void setCountry(List<Country> country) {
-        this.country = country;
-    }
-
 }
