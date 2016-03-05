@@ -115,7 +115,7 @@ public abstract class HttpUrlConnection {
 
             BufferedReader in=null;
             int times = 0;
-            while(in == null && times <= 5) {
+            while(in == null && times <= 3) {
                 try {
                     //if server does not correspond this line will produce an exception
                     in = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));

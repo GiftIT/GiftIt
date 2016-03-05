@@ -78,26 +78,10 @@
         </property>
     </bean>
 
-    <bean id="sexDao" class="model.utility.CommonDaoJpa">
-        <constructor-arg>
-            <value>model.entity.Sex</value>
-        </constructor-arg>
-        <property name="sessionFactory">
-            <ref bean="sessionFactory"/>
-        </property>
-    </bean>
 
-    <bean id="ageCategoryDao" class="model.utility.CommonDaoJpa">
+    <bean id="userDao" class="model.utility.CommonDaoJpa">
         <constructor-arg>
-            <value>model.entity.AgeCategory</value>
-        </constructor-arg>
-        <property name="sessionFactory">
-            <ref bean="sessionFactory"/>
-        </property>
-    </bean>
-    <bean id="countryDao" class="model.utility.CommonDaoJpa">
-        <constructor-arg>
-            <value>model.entity.Country</value>
+            <value>model.entity.User</value>
         </constructor-arg>
         <property name="sessionFactory">
             <ref bean="sessionFactory"/>

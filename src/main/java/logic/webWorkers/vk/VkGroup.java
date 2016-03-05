@@ -5,6 +5,8 @@ package logic.webWorkers.vk;
 import logic.Category;
 import logic.CategoryContainer;
 import logic.connectors.HttpUrlConnection;
+import logic.textClassification.Classifier;
+import logic.textClassification.TextClassifier;
 import logic.webWorkers.Post;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +43,11 @@ public class VkGroup {
         return result.toString();
     }
 
+
+
     Set<Category> categories;
+
+    Classifier classifier = new TextClassifier();
 
     /**
      * Inspect text for key words, and try to get category from this text
@@ -50,17 +56,19 @@ public class VkGroup {
      */
     private Category inspectCategory(String text){
 
-        for(Category c : categories){
-            if(c.getAllowedSite().contains(internalId)) {
-                ArrayList<String> keys = c.getKeys();
+//        for(Category c : categories){
+//            if(c.getAllowedSite().contains(internalId)) {
+//                ArrayList<String> keys = c.getKeys();
+//
+//                for (String key : keys) {
+//                    if (text.contains(key))
+//                        return c;
+//                }
+//            }
+//        }
+//        return null;
 
-                for (String key : keys) {
-                    if (text.contains(key))
-                        return c;
-                }
-            }
-        }
-        return null;
+        return classifier.classify(text, internalId);
     }
 
     public Post[] getPosts(){
