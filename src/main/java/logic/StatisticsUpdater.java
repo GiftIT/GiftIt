@@ -69,7 +69,6 @@ public class StatisticsUpdater implements Runnable {
                 Person[] persons = p.getPersons();
 
 
-
                 for (Person person : persons) {
 
                     User user = new User();
@@ -77,20 +76,31 @@ public class StatisticsUpdater implements Runnable {
                     if (person.hasSex()) {
                         user.setSex(person.getSex());
 //                        sex[person.getSex()]++;
-                    }else {deleted++; continue;};
+                    } else {
+                        deleted++;
+                        continue;
+                    }
+                    ;
                     if (person.hasAge()) {
                         user.setAge(person.getAgeCategory());
-                    } else {deleted++; continue;};
+                    } else {
+                        deleted++;
+                        continue;
+                    }
+                    ;
                     if (person.hasCountry()) {
 
                         user.setCountry(person.getCountry());
-                    } else {deleted++; continue;};
+                    } else {
+                        deleted++;
+                        continue;
+                    }
+                    ;
                     user.setProduct(product);
 
-                    if(product.contains(user.getSex(), user.getAge(), user.getCountry())){
+                    if (product.contains(user.getSex(), user.getAge(), user.getCountry())) {
                         product.get(user.getSex(), user.getAge(), user.getCountry()).incAmount();
-                    }
-                    else {
+                    } else {
 
                         product.getUsers().add(user);
                     }
@@ -107,17 +117,17 @@ public class StatisticsUpdater implements Runnable {
                 productDao.update(product);
             }
         }
-        System.out.println(1.0*deleted/all);
+        System.out.println(1.0 * deleted / all);
     }
 
-    public String[] getData(){
-        GenericDao dao = (GenericDao)context.getBean("userDao");
+    public String[] getData() {
+        GenericDao dao = (GenericDao) context.getBean("userDao");
         List<User> users = dao.findAll();
         List<String> result = new LinkedList<>();
-        for(int i = 0; i < users.size(); i++){
+        for (int i = 0; i < users.size(); i++) {
             User u = users.get(i);
-            String s = new StringBuilder(u.getSex()).append(" ").append(u.getAge()).append(" ").append(u.getProduct()).append("\n").toString();
-            for(int j = 0; j < users.get(i).getAmount(); j++){
+            String s = new StringBuilder(u.getSex()).append(",").append(u.getAge()).append(",").append(u.getProduct()).append(",").toString();
+            for (int j = 0; j < users.get(i).getAmount(); j++) {
                 result.add(s);
             }
         }
@@ -135,7 +145,7 @@ public class StatisticsUpdater implements Runnable {
         System.out.println("finish!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println(System.currentTimeMillis());
         StatisticsUpdater su = new StatisticsUpdater();
         su.run();
