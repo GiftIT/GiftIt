@@ -6,7 +6,7 @@
       "url":"/resources/images/phone.png",
       "shop":"http://rozetka.com.ua/mobile-phones/c80003/filter/pre..",
       "keys":[
-        "telephone", "smartphone", "mobile", "смартфон", "телефон", "мобильный"
+        "telephone", "smartphone", "mobile", "смартфон", "телефон"
       ]
     },
     {
@@ -24,9 +24,10 @@
       "shop":"http://bomond.com.ua/ru/aromaty/podarky-y-nabory/C3136",
       "url":"/resources/images/perfemu.jpg",
       "keys":[
-        "perfume", "essence", "духи", "туалетная вода", "аромат", "букет", "парфюм"
+        "perfume", "essence", "духи", "туалетная вода", "аромат", "парфюм"
       ]
-    },{
+    },
+    {
       "category":"cosmetics",
       "sites":[0,1],
       "shop":"http://bomond.com.ua/ru/makyyazh/lytso/C3174",
@@ -34,8 +35,8 @@
       "keys":[
         "cosmetics", "косметика", "макияж", "блеск", "помада", "тушь", "пудра", "тени", "лак", "лосьен", "крем", "кондиционер", "подводка"
       ]
-
     },
+
     {
       "category":"camera",
       "sites":[0,1],

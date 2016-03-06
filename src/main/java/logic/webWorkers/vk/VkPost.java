@@ -36,13 +36,16 @@ public class VkPost extends Post{
     }
 
     private static String composeRequest(List<Integer> ids){
-        StringBuilder request = new StringBuilder("users.get?user_ids=");
+        StringBuilder request = new StringBuilder("");
         Iterator<Integer> iterator = ids.iterator();
-        request.append(ids.iterator().next());
-        while(iterator.hasNext()){
-            request.append(",").append(iterator.next());
+        if(iterator.hasNext()) {
+            request = new StringBuilder("users.get?user_ids=");
+            request.append(ids.iterator().next());
+            while (iterator.hasNext()) {
+                request.append(",").append(iterator.next());
+            }
+            request.append("&fields[]=sex&fields[]=bdate&fields[]=country&v=").append(VkWorker.VK_API_VERSION);
         }
-        request.append("&fields[]=sex&fields[]=bdate&fields[]=country&v=").append(VkWorker.VK_API_VERSION);
         return request.toString();
     }
 
@@ -76,7 +79,7 @@ public class VkPost extends Post{
 
                     persons.addAll(loadInfo(peopleIds));
 
-                    reachEnd = offset < count;
+                    reachEnd = offset > count;
 
                     if (!reachEnd) {
                         offset += 400;
@@ -101,6 +104,8 @@ public class VkPost extends Post{
 
 
         String request = composeRequest(ids);
+        if(request.equals(""))
+            return new LinkedList<>();
         String response = connection.executeGET(request);
 
         List<Person> persons = new LinkedList<Person>();
