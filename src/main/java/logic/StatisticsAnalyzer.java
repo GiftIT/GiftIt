@@ -1,11 +1,7 @@
 package logic;
 
-import net.sf.javaml.classification.Classifier;
-import net.sf.javaml.classification.KNearestNeighbors;
-import net.sf.javaml.core.Dataset;
 import net.sf.javaml.core.DenseInstance;
 import net.sf.javaml.core.Instance;
-import net.sf.javaml.tools.data.FileHandler;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,14 +20,23 @@ public class StatisticsAnalyzer {
     }
 
     public void learn() throws IOException {
+        statisticsUpdater.run();
         String[] userData = statisticsUpdater.getData();
         int length = userData.length;
         File file = new File(src);
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length-1; i++) {
             writer.write(userData[i]);
+            writer.flush();
+
+                System.out.println(userData[i]);
+
         }
-        int columnNumber = userData[0].length() - userData[0].replaceAll(",", "").length();
+        String data = userData[userData.length-1];
+        writer.write(data.substring(0, data.length()-1));
+        writer.close();
+        int columnNumber = userData[0].length() - userData[0].replaceAll(",", "").length()-1;
+        System.out.println(columnNumber);
         classificationProcessor.learn(file, columnNumber);
     }
 
@@ -40,10 +45,23 @@ public class StatisticsAnalyzer {
     }
 
     public static void main(String[] args) throws IOException {
-        Dataset data = FileHandler.loadDataset(new File("C:\\Users\\Администратор\\Desktop\\iris.data"), 4, ",");
 
-        Classifier knn = new KNearestNeighbors(5);
-        knn.buildClassifier(data);
-        System.out.println(knn.classify(new DenseInstance(new double[]{2.1, 1.2, 6.2, 0.2})));
+        StatisticsAnalyzer analyzer = new StatisticsAnalyzer(new StatisticsUpdater(), new ClassificationProcessor(), "/home/vladislav/data.data");
+
+        analyzer.learn();
+//        Dataset data = FileHandler.loadDataset(new File("C:\\Users\\Администратор\\Desktop\\iris.data"), 4, ",");
+
+        for(int i = 0; i <= 1; i++){
+            for(int j = 1; j <= 50; j++){
+                for(int k = 1; k < 3; k++) {
+                    Object o = analyzer.classify(new DenseInstance(new double[]{i*100, j, k*100}));
+                    System.out.println(i + ", " + j + ", " + k + " = " + o);
+                }
+            }
+        }
+
+//        Classifier knn = new KNearestNeighbors(5);
+//        knn.buildClassifier(data);
+//        System.out.println(knn.classify(new DenseInstance(new double[]{2.1, 1.2, 6.2, 0.2})));
     }
 }

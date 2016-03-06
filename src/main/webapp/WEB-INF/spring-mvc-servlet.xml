@@ -21,6 +21,16 @@
         </property>
     </bean>
 
+    <bean id="statisticUpdater" class="logic.StatisticsUpdater"/>
+
+    <bean id="classificationProcessor" class="logic.ClassificationProcessor"/>
+
+    <bean id="statisticsAnalyzer" class="logic.StatisticsAnalyzer">
+        <constructor-arg name="classificationProcessor" ref="classificationProcessor"/>
+        <constructor-arg name="statisticsUpdater" ref="statisticUpdater"/>
+        <constructor-arg name="src" value="/home/vitaliy/data.data"/>
+    </bean>
+
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
 

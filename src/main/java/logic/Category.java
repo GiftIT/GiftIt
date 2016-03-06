@@ -1,10 +1,6 @@
 package logic;
 
-import logic.connectors.VkApiConnection;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by vlad on 12/12/15.

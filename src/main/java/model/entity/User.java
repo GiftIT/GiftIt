@@ -16,7 +16,7 @@ public class User {
 
     private int age = -1;
 
-    private String country = "";
+    private int country = -1;
 
     private int amount = 1;
 
@@ -51,11 +51,11 @@ public class User {
         this.age = age;
     }
 
-    public String getCountry() {
+    public int getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(int country) {
         this.country = country;
     }
 
@@ -80,7 +80,7 @@ public class User {
 
         User that = (User)obj;
 
-        return (this.sex == that.sex && this.age == that.age && this.country.equals(that.country) && this.product == that.product);
+        return (this.sex == that.sex && this.age == that.age && this.country == that.country && this.product == that.product);
 
     }
 }

@@ -4,8 +4,8 @@ import logic.webWorkers.Person;
 import logic.webWorkers.Post;
 import logic.webWorkers.Worker;
 import logic.webWorkers.vk.VkWorker;
-import model.entity.*;
-import model.utility.CommonDaoJpa;
+import model.entity.Product;
+import model.entity.User;
 import model.utility.GenericDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -116,6 +116,7 @@ public class StatisticsUpdater implements Runnable {
                 product.addPosts();
                 productDao.update(product);
             }
+
         }
         System.out.println(1.0 * deleted / all);
     }
@@ -125,8 +126,10 @@ public class StatisticsUpdater implements Runnable {
         List<User> users = dao.findAll();
         List<String> result = new LinkedList<>();
         for (int i = 0; i < users.size(); i++) {
+//            if(users.get(i).getProduct().getIdProduct() == 10 || users.get(i).getProduct().getIdProduct() == 5)
+//                continue;
             User u = users.get(i);
-            String s = new StringBuilder(u.getSex()).append(",").append(u.getAge()).append(",").append(u.getProduct()).append(",").toString();
+            String s = new StringBuilder(""+u.getSex()).append(",").append(u.getAge()).append(",").append(u.getCountry()).append(",").append(u.getProduct().getName()).append(",\n").toString();
             for (int j = 0; j < users.get(i).getAmount(); j++) {
                 result.add(s);
             }
@@ -136,6 +139,9 @@ public class StatisticsUpdater implements Runnable {
 
     @Override
     public void run() {
+
+
+
         this.dropTable();
         this.addWorker(new VkWorker());
         this.updateStatistic();
@@ -146,7 +152,12 @@ public class StatisticsUpdater implements Runnable {
         System.out.println(System.currentTimeMillis());
         StatisticsUpdater su = new StatisticsUpdater();
         su.run();
-        System.out.println(su.getData().length);
+        String[] data = su.getData();
+        StringBuilder b = new StringBuilder();
+        for(String s : data){
+            b.append(s);
+        }
+        System.out.println(b.toString().length());
     }
 
 }

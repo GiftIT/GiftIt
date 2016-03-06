@@ -68,6 +68,7 @@ public class VkWorker implements Worker {
         }
     }
 
+
     @Override
     public boolean hasPost() {
 
