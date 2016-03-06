@@ -1,11 +1,13 @@
 package controller;
 
-import logic.ClassificationProcessor;
 import logic.StatisticsAnalyzer;
-import logic.StatisticsUpdater;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.Arrays;
 
 
 /**
@@ -21,15 +23,21 @@ public class GiftController {
     @RequestMapping(value = "/gift", method = RequestMethod.GET)
     public
     @ResponseBody
-    String getGiftJSON(@RequestParam(value = "sex") int sex,
-                       @RequestParam(value = "age") int age,
-                       @RequestParam(value = "country") int country) {
+    String getGiftJSON(@RequestParam(value = "sex") double sex,
+                       @RequestParam(value = "age") double age,
+                       @RequestParam(value = "country") double country) {
+        double[] criteria = {sex, age, country};
+        String[] result = null;
+        try {
+            result = statisticsUpdater.getCategories(criteria, 5);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         JSONObject jsonObject = new JSONObject();
-
-        //TODO add Machine Learning
-
-
+        jsonObject.put("result", result);
         return jsonObject.toString();
+
     }
 
 

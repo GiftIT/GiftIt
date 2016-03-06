@@ -20,6 +20,7 @@ function scrolling(to) {
 }
 
 function printAges(sex) {
+    var age = 0;
     const ages = ["<6", "6-10", "10-15", "15-18", "18-30", "30-40", "40-50", ">50"];
     $("#age").css({"display": "block"});
     var image = document.getElementById("age-image");
@@ -36,12 +37,16 @@ function printAges(sex) {
     var div;
     var innerDiv;
     for (var i = 1; i <= 8; i++) {
-        div = document.createElement("div" );
+        div = document.createElement("div");
         $(div).css({"margin": "3% auto 0"});
         div.setAttribute("class", "col-sm-3");
         innerDiv = document.createElement("div");
         innerDiv.setAttribute("class", "age-images");
-        $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.png")'});
+        innerDiv.setAttribute("id", "age" + i);
+        $("#age" + i).click(function () {
+            age = this.i;
+        });
+        $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.PNG")'});
         div.appendChild(innerDiv);
         div.innerHTML += '<h3>' + ages[i - 1] + '</h3>';
         image.appendChild(div);
@@ -63,6 +68,8 @@ function printAges(sex) {
     }
     $(".age-images").css({"cursor": "pointer"});
     scrolling("#age-text");
+
+
     $(".age-images").click(function () {
         $("#country").css({"display": "block"});
         var text = document.getElementById("country-text");
@@ -70,6 +77,15 @@ function printAges(sex) {
         text.appendChild(document.createTextNode('From Where?'));
         scrolling("#country");
     });
+
+    $("#ukraine").click(function () {
+        JsonRequest(sex, age, 0);
+    })
+    $("#russia").click(function () {
+        JsonRequest(sex, age, 1);
+    })
+
+
 }
 
 //stretch the noise on the whole page

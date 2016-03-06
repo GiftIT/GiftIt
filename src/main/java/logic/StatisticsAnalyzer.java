@@ -22,7 +22,7 @@ public class StatisticsAnalyzer {
     }
 
     public void learn(String... categories) throws IOException {
-//        statisticsUpdater.run();
+        statisticsUpdater.run();
         String[] userData = statisticsUpdater.getData(categories);
         int length = userData.length;
         File file = new File(src);
@@ -59,8 +59,10 @@ public class StatisticsAnalyzer {
 
 //        Dataset data = FileHandler.loadDataset(new File("C:\\Users\\Администратор\\Desktop\\iris.data"), 4, ",");
 
-        String[] prediction = analyzer.getCategories(new double[]{100, 55, 200}, 8);
-        for (String s : prediction) {
+
+        String[] prediction = analyzer.getCategories(new double[]{100, 20, 200}, 8);
+        for(String s : prediction){
+
             System.out.println(s);
         }
 //        for(int i = 0; i <= 1; i++){
