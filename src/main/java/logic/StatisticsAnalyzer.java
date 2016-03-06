@@ -48,5 +48,5 @@ public class StatisticsAnalyzer {
         return classificationProcessor.classify(instance);
     }
 
-    
+
 }
