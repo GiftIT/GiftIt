@@ -2,7 +2,7 @@
   "categories":[
     {
       "category":"telephone",
-      "sites":[0,1],
+      "sites":[0],
       "url":"/resources/images/phone.png",
       "shop":"http://rozetka.com.ua/mobile-phones/c80003/filter/pre..",
       "keys":[
@@ -11,7 +11,7 @@
     },
     {
       "category":"tablet",
-      "sites":[0,1],
+      "sites":[0],
       "url":"/resources/images/tablet.png",
       "shop":"http://rozetka.com.ua/tablets/c130309/",
       "keys":[
@@ -28,18 +28,53 @@
       ]
     },
     {
-      "category":"cosmetics",
-      "sites":[0,1],
+      "category":"lipstick",
+      "sites":[1],
       "shop":"http://bomond.com.ua/ru/makyyazh/lytso/C3174",
       "url":"/resources/images/kosm.jpg",
       "keys":[
-        "cosmetics", "косметика", "макияж", "блеск", "помада", "тушь", "пудра", "тени", "лак", "лосьен", "крем", "кондиционер", "подводка"
+        "блеск", "помада", "губы"
       ]
     },
-
+    {
+      "category":"headphones",
+      "sites":[0],
+      "shop":"http://bomond.com.ua/ru/makyyazh/lytso/C3174",
+      "url":"/resources/images/kosm.jpg",
+      "keys":[
+        "headphones", "наушники"
+      ]
+    },
+    {
+      "category":"shampoo",
+      "sites":[1],
+      "shop":"http://bomond.com.ua/ru/makyyazh/lytso/C3174",
+      "url":"/resources/images/kosm.jpg",
+      "keys":[
+        "shampoo","кондиционер", "шампунь", "волосы"
+      ]
+    },
+    {
+      "category":"nail",
+      "sites":[1],
+      "shop":"http://bomond.com.ua/ru/makyyazh/lytso/C3174",
+      "url":"/resources/images/kosm.jpg",
+      "keys":[
+        "nail","лак для ногтей", "ногти", "лак", "пилочка"
+      ]
+    },
+    {
+      "category":"ink",
+      "sites":[1],
+      "shop":"http://bomond.com.ua/ru/makyyazh/lytso/C3174",
+      "url":"/resources/images/kosm.jpg",
+      "keys":[
+       "глаз", "тушь", "подводка"
+      ]
+    },
     {
       "category":"camera",
-      "sites":[0,1],
+      "sites":[0],
       "shop":"http://rozetka.com.ua/search/catalog/?text=camera",
       "url":"/resources/images/camera.png",
       "keys":[
@@ -48,11 +83,11 @@
     },
     {
       "category":"laptop",
-      "sites":[0,1],
+      "sites":[0],
       "shop":"http://rozetka.com.ua/notebooks/c80004/filter/",
       "url":"/resources/images/laptop.png",
       "keys":[
-        "laptop", "notebook", "ноутбук", "ноут"
+        "laptop", "notebook", "ноут", "ультрабук"
       ]
     },
     {
@@ -79,16 +114,88 @@
       "shop":"http://colins.ua/ua/",
       "url":"/resources/images/tshirt.png",
       "keys":[
-        "wear", "штаны", "брюки", "джинсы", "шорты", "бриджи", "футболка", "свитер", "худи", "пуловер", "жакет", "куртка", "пальто", "парка", "ветровка", "обувь", "кроссо", "туфли", "ботинки", "шапка", "кепка", "шарф"
+        "wear", "штаны", "брюки", "джинсы", "шорты", "бриджи", "футболка", "свитер", "худи", "пуловер", "жакет", "куртка", "пальто", "парка", "ветровка", "шапка", "кепка", "шарф"
       ]
     },
     {
-      "category":"jewelry",
+      "category":"shoes",
+      "sites":[0, 1],
+      "shop":"http://colins.ua/ua/",
+      "url":"/resources/images/tshirt.png",
+      "keys":[
+        "обувь", "кроссо", "туфли", "ботинки"
+      ]
+    },
+    {
+      "category":"ring",
       "sites":[0, 1],
       "url":"/resources/images/_318-29834.jpg",
       "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
       "keys":[
-        "jewelry", "драгоценности", "золото", "серебро", "колье", "кольцо", "ожерелье", "цепочка", "браслет", "сережки", "медальон"
+        "ring", "кольцо", "свадьба", "карат", "бриллиант", "золото", "серебро"
+      ]
+    },
+    {
+      "category":"necklace",
+      "sites":[0, 1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+       "колье", "ожерелье", "цепочка", "золото", "серебро"
+      ]
+    },
+    {
+      "category":"earrings",
+      "sites":[1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+        "серьги", "сережки", "серёжки", "тунели", "золото", "серебро"
+      ]
+    },
+    {
+      "category":"alcohol",
+      "sites":[0, 1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+        "alcohol", "алкоголь", "виски", "коньяк", "вино"
+      ]
+    },
+    {
+      "category":"bags",
+      "sites":[0, 1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+        "bag", "сумка", "сумочка", "рюкзак", "портфель", "ранец"
+      ]
+    },
+    {
+      "category":"wallet",
+      "sites":[1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+        "кошелек", "портмоне", "клатч"
+      ]
+    },
+    {
+      "category":"sport",
+      "sites":[0,1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+        "спорт", "штанга", "скакалка", "турник", "мяч", "ракетк", "велосипед"
+      ]
+    },
+    {
+      "category":"desk_games",
+      "sites":[0,1],
+      "url":"/resources/images/_318-29834.jpg",
+      "shop":"http://www.mazhor.kiev.ua/cat_bijouterie.html",
+      "keys":[
+        "манчкин", "монополия", "покер", "настольная игра", "шахматы", "нарды"
       ]
     }
 

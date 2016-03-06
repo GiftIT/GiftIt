@@ -67,7 +67,7 @@ public class StatisticsUpdater implements Runnable {
                 Post p = w.getNextPost();
                 Product product = (Product) productDao.find(p.getCategory().getType());
                 if(product.getIdProduct() == ((Product)productDao.find("telephone")).getIdProduct()){
-                    if(telephoneCount == 4){
+                    if(telephoneCount == 2){
                         telephoneCount = 0;
                         continue;
                     }
