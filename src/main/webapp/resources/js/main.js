@@ -29,6 +29,7 @@ function printAges(sex) {
     text.innerHTML = "";
     text.appendChild(document.createTextNode('Age?'));
     var str;
+    debugger;
     if (sex) {
         str = "boy";
     } else {
@@ -42,15 +43,18 @@ function printAges(sex) {
         div.setAttribute("class", "col-sm-3");
         innerDiv = document.createElement("div");
         innerDiv.setAttribute("class", "age-images");
+        innerDiv.className += " age";
         innerDiv.setAttribute("id", "age" + i);
-        $("#age" + i).click(function () {
-            age = this.i;
-        });
+        innerDiv.setAttribute("i",i);
         $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.PNG")'});
         div.appendChild(innerDiv);
         div.innerHTML += '<h3>' + ages[i - 1] + '</h3>';
         image.appendChild(div);
     }
+    $(".age").click(function () {
+        debugger;
+        age = this.getAttribute("i");
+    });
     if (sex) {
         $(".age-images").css({"border": "2px solid #96d6eb"});
         $(".age-images").hover(function () {
@@ -79,9 +83,11 @@ function printAges(sex) {
     });
 
     $("#ukraine").click(function () {
+        debugger;
         JsonRequest(sex, age, 0);
     })
     $("#russia").click(function () {
+        debugger;
         JsonRequest(sex, age, 1);
     })
 }
