@@ -113,11 +113,11 @@ span {
 
 #girl {
     background-image: url("../img/female.png");
-    border: 0.5vw solid #f3bb11;
+    border: 0.5vw solid #3f826d;
 }
 
 #girl:hover {
-    background-color: #e0ed8e;
+    background-color: #d4c5e2;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -212,4 +212,27 @@ span {
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+}
+
+#result {
+    background-color: #8fc574;
+    font-family: 'Arvo', serif;
+    text-align: center;
+    min-height: 100vh;
+    display: none;
+}
+
+#result-text {
+    font-weight: 700;
+    font-size: 3.5vw;
+    color: #278e46;
+}
+
+.result-image {
+    width: 25vw;
+    height: 25vw;
+    background-size: cover;
+    border-radius: 100%;
+    margin: 9% auto 0;
+    cursor: pointer;
 }
