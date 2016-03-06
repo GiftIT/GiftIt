@@ -43,7 +43,7 @@ public class StatisticsAnalyzer {
     }
 
     public String[] getCategories(double[] data, int amount) throws IOException {
-        statisticsUpdater.run();
+//        statisticsUpdater.run();
         String[] result = new String[amount];
         Instance instance = new DenseInstance(data);
         for (int i = 0; i < amount; i++) {
@@ -61,7 +61,7 @@ public class StatisticsAnalyzer {
 //        Dataset data = FileHandler.loadDataset(new File("C:\\Users\\Администратор\\Desktop\\iris.data"), 4, ",");
 
 
-        String[] prediction = analyzer.getCategories(new double[]{100, 600, 100}, 8);
+        String[] prediction = analyzer.getCategories(new double[]{100, 300, 200}, 8);
         for(String s : prediction){
 
             System.out.println(s);
