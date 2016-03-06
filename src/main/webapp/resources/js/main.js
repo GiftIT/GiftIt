@@ -36,7 +36,7 @@ function printAges(sex) {
     var div;
     var innerDiv;
     for (var i = 1; i <= 8; i++) {
-        div = document.createElement("div" );
+        div = document.createElement("div");
         $(div).css({"margin": "3% auto 0"});
         div.setAttribute("class", "col-sm-3");
         innerDiv = document.createElement("div");
@@ -47,6 +47,8 @@ function printAges(sex) {
         image.appendChild(div);
     }
     scrolling("#age-text");
+    JsonRequest(sex, 20, 200);
+
 }
 
 //stretch the noise on the whole page

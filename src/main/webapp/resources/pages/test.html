@@ -5,17 +5,21 @@
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript">
 
-        function JsonRequest() {
-            $.ajax({
-                type: "GET",
-                url: '/gift',
-                data: ({sex: 16, age: 15, country: 15}),
-                dataType: 'json',
-                success: function (data) {
-                    alert(data.age + "  " + data.country);
-                }
-            });
-        }
+//        function JsonRequest() {
+//            $.ajax({
+//                type: "GET",
+//                url: '/gift',
+//                data: ({sex: 0, age: 20, country: 200}),
+//                dataType: 'json',
+//                success: function (data) {
+//                    var text = "";
+//                    for (var i = 0; i < data.result.length; i++) {
+//                        text += data.result[i] + " ";
+//                    }
+//                    alert(text);
+//                }
+//            });
+//        }
 
     </script>
 </head>
