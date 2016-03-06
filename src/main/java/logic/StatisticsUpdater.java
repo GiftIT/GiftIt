@@ -49,6 +49,8 @@ public class StatisticsUpdater implements Runnable {
 
     }
 
+    int telephoneCount = 0;
+
     public void updateStatistic() {
         Person.updateYear();
         int deleted = 0;
@@ -64,6 +66,13 @@ public class StatisticsUpdater implements Runnable {
 
                 Post p = w.getNextPost();
                 Product product = (Product) productDao.find(p.getCategory().getType());
+                if(product.getIdProduct() == 10){
+                    if(telephoneCount == 10){
+                        telephoneCount = 0;
+                        continue;
+                    }
+                    telephoneCount++;
+                }
                 Person[] persons = p.getPersons();
 
 

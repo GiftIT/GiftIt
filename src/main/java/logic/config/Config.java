@@ -20,6 +20,7 @@ public class Config {
     private void fillDefaultProperties(){
         values.put("vocabulary.config", "/vocabulary.json");
         values.put("vkgroups.config", "/vkgroups.json");
+        values.put("fbgroups.config", "/fbgroups.json");
     }
 
     public String getParamenter(String key){
