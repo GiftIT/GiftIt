@@ -84,8 +84,6 @@ function printAges(sex) {
     $("#russia").click(function () {
         JsonRequest(sex, age, 1);
     })
-
-
 }
 
 //stretch the noise on the whole page
