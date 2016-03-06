@@ -43,7 +43,7 @@ public class StatisticsAnalyzer {
     }
 
     public String[] getCategories(double[] data, int amount) throws IOException {
-        statisticsUpdater.run();
+//        statisticsUpdater.run();
         String[] result = new String[amount];
         Instance instance = new DenseInstance(data);
         for (int i = 0; i < amount; i++) {

@@ -46,20 +46,20 @@ function printAges(sex) {
         $("#age" + i).click(function () {
             age = this.i;
         });
-        $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.PNG")'});
+        $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.png")'});
         div.appendChild(innerDiv);
         div.innerHTML += '<h3>' + ages[i - 1] + '</h3>';
         image.appendChild(div);
     }
     if (sex) {
-        $(".age-images").css({"border": "2px solid #96d6eb"});
+        $(".age-images").css({"border": "2px solid #1b4079"});
         $(".age-images").hover(function () {
             $(this).css("background-color", "#51bcc3");
         }, function () {
             $(this).css("background-color", "");
         });
     } else {
-        $(".age-images").css({"border": "2px solid #3f826d"});
+        $(".age-images").css({"border": "2px solid #754668"});
         $(".age-images").hover(function () {
             $(this).css("background-color", "#d4c5e2");
         }, function () {
@@ -79,11 +79,11 @@ function printAges(sex) {
     });
 
     $("#ukraine").click(function () {
-        JsonRequest(sex, age, 0);
-    })
+        JsonRequest(sex, age, 0, printRecommendedGifts);
+    });
     $("#russia").click(function () {
-        JsonRequest(sex, age, 1);
-    })
+        JsonRequest(sex, age, 1, printRecommendedGifts);
+    });
 }
 
 //stretch the noise on the whole page
