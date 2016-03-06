@@ -21,17 +21,13 @@ public class ClassificationProcessor implements DataProcessor {
         Dataset data = FileHandler.loadDataset(file, columnNumber, ",");
         classifier = new KNearestNeighbors(4);
         NormalizeMidrange nmr = new NormalizeMidrange(0.5, 1);
-/* Instanciate new filter */
         nmr.build(data);
-
         classifier.buildClassifier(data);
         Dataset dataForClassification = FileHandler.loadDataset(file, columnNumber, ",");
-
         Map<Object, PerformanceMeasure> pm = EvaluateDataset.testDataset(classifier, dataForClassification);
         for (Object o : pm.keySet())
             System.out.println(o + ": " + pm.get(o).getAccuracy());
     }
-
 
     @Override
     public Object classify(Instance instance) {
