@@ -113,11 +113,11 @@ span {
 
 #girl {
     background-image: url("../img/female.png");
-    border: 0.5vw solid #f3bb11;
+    border: 0.5vw solid #3f826d;
 }
 
 #girl:hover {
-    background-color: #e0ed8e;
+    background-color: #d4c5e2;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;

@@ -54,9 +54,9 @@ function printAges(sex) {
             $(this).css("background-color", "");
         });
     } else {
-        $(".age-images").css({"border": "2px solid #f3bb11"});
+        $(".age-images").css({"border": "2px solid #3f826d"});
         $(".age-images").hover(function () {
-            $(this).css("background-color", "#e0ed8e");
+            $(this).css("background-color", "#d4c5e2");
         }, function () {
             $(this).css("background-color", "");
         });
