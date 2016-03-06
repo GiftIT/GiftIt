@@ -31,7 +31,7 @@ function printAges(sex) {
     if (sex) {
         str = "boy";
     } else {
-        str = "girl"
+        str = "girl";
     }
     var div;
     var innerDiv;
@@ -41,15 +41,39 @@ function printAges(sex) {
         div.setAttribute("class", "col-sm-3");
         innerDiv = document.createElement("div");
         innerDiv.setAttribute("class", "age-images");
-        $(innerDiv).css({"background-image": 'url("img/' + (str + i) + '.PNG")'});
+        $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.png")'});
         div.appendChild(innerDiv);
         div.innerHTML += '<h3>' + ages[i - 1] + '</h3>';
         image.appendChild(div);
     }
+    if (sex) {
+        $(".age-images").css({"border": "2px solid #96d6eb"});
+        $(".age-images").hover(function () {
+            $(this).css("background-color", "#51bcc3");
+        }, function () {
+            $(this).css("background-color", "");
+        });
+    } else {
+        $(".age-images").css({"border": "2px solid #f3bb11"});
+        $(".age-images").hover(function () {
+            $(this).css("background-color", "#e0ed8e");
+        }, function () {
+            $(this).css("background-color", "");
+        });
+    }
+    $(".age-images").css({"cursor": "pointer"});
     scrolling("#age-text");
+    $(".age-images").click(function () {
+        $("#country").css({"display": "block"});
+        var text = document.getElementById("country-text");
+        text.innerHTML = "";
+        text.appendChild(document.createTextNode('From Where?'));
+        scrolling("#country");
+    });
 }
 
 //stretch the noise on the whole page
 function addNoise() {
     $("#noise").css({"height": "" + $(document).height()});
 }
+
