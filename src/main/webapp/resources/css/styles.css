@@ -86,7 +86,7 @@ span {
 }
 
 #sex {
-    background-color: #e5f7f5;
+    background-color: #8fc574;
     font-family: 'Arvo', serif;
     text-align: center;
     min-height: 100vh;
@@ -99,7 +99,7 @@ span {
 #sex h1 {
     font-weight: 700;
     font-size: 3.5vw;
-    color: #3B413C;
+    color: #278e46;
 }
 
 #girl, #boy {
@@ -112,12 +112,12 @@ span {
 }
 
 #girl {
-    background-image: url("../img/girl.png");
-    border: 0.5vw solid #f26667;
+    background-image: url("../img/female.png");
+    border: 0.5vw solid #f3bb11;
 }
 
 #girl:hover {
-    background-color: #fad0d1;
+    background-color: #e0ed8e;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -125,12 +125,12 @@ span {
 }
 
 #boy {
-    background-image: url("../img/boy.png");
-    border: 0.5vw solid #518DBB;
+    background-image: url("../img/male.png");
+    border: 0.5vw solid #96d6eb;
 }
 
 #boy:hover {
-    background-color: #96a9d4;
+    background-color: #51bcc3;
     -webkit-transition: all 0.2s ease-in-out;
     -moz-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
@@ -138,7 +138,7 @@ span {
 }
 
 #age {
-    background-color: #e5f7f5;
+    background-color: #8fc574;
     font-family: 'Arvo', serif;
     text-align: center;
     min-height: 100vh;
@@ -148,7 +148,7 @@ span {
 #age-text {
     font-weight: 700;
     font-size: 3.5vw;
-    color: #3B413C;
+    color: #278e46;
 }
 
 .age-images {
@@ -157,11 +157,59 @@ span {
     background-size: cover;
     border-radius: 100%;
     margin: 0 auto;
-    border: 2px solid #C4D7F2;
 }
 
 #age-image h3 {
     color: #3B413C;
     font-family: 'Arvo', serif;
     font-size: 2vw;
+}
+
+#country {
+    background-color: #8fc574;
+    font-family: 'Arvo', serif;
+    text-align: center;
+    min-height: 100vh;
+    display: none;
+}
+
+#country-text {
+    font-weight: 700;
+    font-size: 3.5vw;
+    color: #278e46;
+}
+
+#ukraine, #russia {
+    width: 25vw;
+    height: 25vw;
+    background-size: cover;
+    border-radius: 100%;
+    margin: 9% auto 0;
+    cursor: pointer;
+}
+
+#ukraine {
+    background-image: url("../img/ukr.png");
+    border: 0.5vw solid #2fa251;
+}
+
+#ukraine:hover {
+    background-color: #6db855;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+#russia {
+    background-image: url("../img/ru.png");
+    border: 0.5vw solid #2fa251;
+}
+
+#russia:hover {
+    background-color: #6db855;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }

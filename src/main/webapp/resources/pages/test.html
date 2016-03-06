@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spring MVC Ajax Demo</title>
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript">
+
+        function JsonRequest() {
+            $.ajax({
+                type: "GET",
+                url: '/gift',
+                data: ({sex: 16, age: 15, country: 15}),
+                dataType: 'json',
+                success: function (data) {
+                    alert(data.age + "  " + data.country);
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+${message}
+<button id="demo" onclick="JsonRequest()" title="Button">Get the time!</button>
+<div id="time">
+</div>
+</body>
+</html>

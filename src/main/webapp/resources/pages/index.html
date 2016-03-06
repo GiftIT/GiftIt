@@ -8,21 +8,22 @@
     <link rel="icon" href="../img/logos.png">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="../js/main.js"></script>
+    <script src="../js/requestToServer.js"></script>
 </head>
 <body>
 <header>
     <div id="parallax-container">
         <div class="parallax-element">
-            <img id="snow3" class="img-responsive" src="../img/snow3.png">
+            <img id="snow3" class="img-responsive" src="../img/grass3.png">
         </div>
         <div class="parallax-element">
             <img id="gift" class="img-responsive" src="../img/gift.png">
         </div>
         <div class="parallax-element">
-            <img id="snow2" class="img-responsive" src="../img/snow2.png">
+            <img id="snow2" class="img-responsive" src="../img/grass2.png">
         </div>
         <div class="parallax-element">
-            <img id="snow1" class="img-responsive" src="../img/snow1.png">
+            <img id="snow1" class="img-responsive" src="../img/grass1.png">
         </div>
         <div id="header-text" class="parallax-element">
             <h2><span>How to</span><br></h2>
@@ -43,7 +44,6 @@
         <div class="row">
             <div class="col-sm-6" onclick="printAges(0)">
                 <div id="girl"></div>
-                <div></div>
             </div>
             <div class="col-sm-6" onclick="printAges(1)">
                 <div id="boy"></div>
@@ -61,6 +61,22 @@
         </div>
     </div>
 </main>
+<section>
+    <div id="country" class="container-fluid">
+        <div class="row">
+            <h1 id="country-text"></h1>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div id="ukraine"></div>
+            </div>
+            <div class="col-sm-6">
+                <div id="russia">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div id="noise"></div>
 </body>
 </html>

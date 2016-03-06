@@ -4,7 +4,10 @@ import model.utility.GenericDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by vlad on 12/13/15.
@@ -14,7 +17,6 @@ public class Predictor {
     private static double sexWeigter = 0.5;
     private static double ageWeigter = 0.5;
     private static double countryWeigter = 0.3;
-
 
     private static final Predictor instance = new Predictor();
 

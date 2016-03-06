@@ -1,12 +1,9 @@
 package logic;
 
-import net.sf.javaml.classification.Classifier;
-import net.sf.javaml.classification.KNearestNeighbors;
-import net.sf.javaml.clustering.Clusterer;
-import net.sf.javaml.core.Dataset;
+
 import net.sf.javaml.core.DenseInstance;
+
 import net.sf.javaml.core.Instance;
-import net.sf.javaml.tools.data.FileHandler;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -30,14 +27,14 @@ public class StatisticsAnalyzer {
         int length = userData.length;
         File file = new File(src);
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        for (int i = 0; i < length-1; i++) {
+        for (int i = 0; i < length - 1; i++) {
             writer.write(userData[i]);
             writer.flush();
         }
-        String data = userData[userData.length-1];
-        writer.write(data.substring(0, data.length()-1));
+        String data = userData[userData.length - 1];
+        writer.write(data.substring(0, data.length() - 1));
         writer.close();
-        int columnNumber = userData[0].length() - userData[0].replaceAll(",", "").length()-1;
+        int columnNumber = userData[0].length() - userData[0].replaceAll(",", "").length() - 1;
         classificationProcessor.learn(file, columnNumber);
     }
 
@@ -45,12 +42,12 @@ public class StatisticsAnalyzer {
         return classificationProcessor.classify(instance);
     }
 
-    public String[] getCategories(double[] data, int amount) throws IOException{
+    public String[] getCategories(double[] data, int amount) throws IOException {
         String[] result = new String[amount];
         Instance instance = new DenseInstance(data);
-        for(int i = 0; i < amount; i++){
+        for (int i = 0; i < amount; i++) {
             learn(result);
-            String cat = (String)classify(instance);
+            String cat = (String) classify(instance);
             result[i] = cat;
         }
         return result;
@@ -65,6 +62,7 @@ public class StatisticsAnalyzer {
 
         String[] prediction = analyzer.getCategories(new double[]{100, 20, 200}, 8);
         for(String s : prediction){
+
             System.out.println(s);
         }
 //        for(int i = 0; i <= 1; i++){
@@ -75,9 +73,6 @@ public class StatisticsAnalyzer {
 //                }
 //            }
 //        }
-
-//        Classifier knn = new KNearestNeighbors(5);
-//        knn.buildClassifier(data);
-//        System.out.println(knn.classify(new DenseInstance(new double[]{2.1, 1.2, 6.2, 0.2})));
     }
 }
+
