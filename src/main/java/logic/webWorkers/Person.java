@@ -59,19 +59,19 @@ public class Person {
     public void setAge(int age) {
 
 //        this.ageCategory = age;
-        if(age <= 12)
+        if(age <= 6)
             this.ageCategory = 0;
-        else if( age > 12 && age <= 16)
+        else if( age > 6 && age <= 10)
             this.ageCategory = 1;
-        else if( age > 16 && age <= 20)
+        else if( age > 10 && age <= 15)
             this.ageCategory = 2;
-        else if( age > 20 && age <= 25)
+        else if( age > 15 && age <= 18)
             this.ageCategory = 3;
-        else if( age > 25 && age <= 35)
+        else if( age > 18 && age <= 30)
             this.ageCategory = 4;
-        else if( age > 35 && age <= 45)
+        else if( age > 30 && age <= 40)
             this.ageCategory = 5;
-        else if( age > 45 && age <= 60)
+        else if( age > 40 && age <= 50)
             this.ageCategory = 6;
         else
             this.ageCategory = 7;
