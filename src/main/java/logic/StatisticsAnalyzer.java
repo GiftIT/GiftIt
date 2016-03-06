@@ -22,7 +22,7 @@ public class StatisticsAnalyzer {
     }
 
     public void learn(String... categories) throws IOException {
-        statisticsUpdater.run();
+
         String[] userData = statisticsUpdater.getData(categories);
         int length = userData.length;
         File file = new File(src);
@@ -43,6 +43,7 @@ public class StatisticsAnalyzer {
     }
 
     public String[] getCategories(double[] data, int amount) throws IOException {
+        statisticsUpdater.run();
         String[] result = new String[amount];
         Instance instance = new DenseInstance(data);
         for (int i = 0; i < amount; i++) {
@@ -60,7 +61,7 @@ public class StatisticsAnalyzer {
 //        Dataset data = FileHandler.loadDataset(new File("C:\\Users\\Администратор\\Desktop\\iris.data"), 4, ",");
 
 
-        String[] prediction = analyzer.getCategories(new double[]{100, 20, 200}, 8);
+        String[] prediction = analyzer.getCategories(new double[]{100, 600, 100}, 8);
         for(String s : prediction){
 
             System.out.println(s);

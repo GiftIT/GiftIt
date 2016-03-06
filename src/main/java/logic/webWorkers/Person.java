@@ -58,23 +58,24 @@ public class Person {
 
     public void setAge(int age) {
 
-        this.ageCategory = age;
-//        if(age <= 12)
-//            this.ageCategory = 0;
-//        else if( age > 12 && age <= 16)
-//            this.ageCategory = 1;
-//        else if( age > 16 && age <= 20)
-//            this.ageCategory = 2;
-//        else if( age > 20 && age <= 25)
-//            this.ageCategory = 3;
-//        else if( age > 25 && age <= 35)
-//            this.ageCategory = 4;
-//        else if( age > 35 && age <= 45)
-//            this.ageCategory = 5;
-//        else if( age > 45 && age <= 60)
-//            this.ageCategory = 6;
-//        else
-//            this.ageCategory = 7;
+//        this.ageCategory = age;
+        if(age <= 12)
+            this.ageCategory = 0;
+        else if( age > 12 && age <= 16)
+            this.ageCategory = 1;
+        else if( age > 16 && age <= 20)
+            this.ageCategory = 2;
+        else if( age > 20 && age <= 25)
+            this.ageCategory = 3;
+        else if( age > 25 && age <= 35)
+            this.ageCategory = 4;
+        else if( age > 35 && age <= 45)
+            this.ageCategory = 5;
+        else if( age > 45 && age <= 60)
+            this.ageCategory = 6;
+        else
+            this.ageCategory = 7;
+        this.ageCategory *= 100;
     }
 
     public int getCountry() {
