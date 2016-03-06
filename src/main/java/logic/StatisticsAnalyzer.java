@@ -25,17 +25,21 @@ public class StatisticsAnalyzer {
     }
 
     public void learn() throws IOException {
-//        statisticsUpdater.run();
+        statisticsUpdater.run();
         String[] userData = statisticsUpdater.getData();
         int length = userData.length;
         File file = new File(src);
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-        for (int i = 0; i < length; i++) {
+        for (int i = 0; i < length-1; i++) {
             writer.write(userData[i]);
+            writer.flush();
 
                 System.out.println(userData[i]);
 
         }
+        String data = userData[userData.length-1];
+        writer.write(data.substring(0, data.length()-1));
+        writer.close();
         int columnNumber = userData[0].length() - userData[0].replaceAll(",", "").length()-1;
         System.out.println(columnNumber);
         classificationProcessor.learn(file, columnNumber);

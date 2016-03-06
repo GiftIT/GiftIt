@@ -116,6 +116,7 @@ public class StatisticsUpdater implements Runnable {
                 product.addPosts();
                 productDao.update(product);
             }
+
         }
         System.out.println(1.0 * deleted / all);
     }
@@ -128,7 +129,7 @@ public class StatisticsUpdater implements Runnable {
 //            if(users.get(i).getProduct().getIdProduct() == 10 || users.get(i).getProduct().getIdProduct() == 5)
 //                continue;
             User u = users.get(i);
-            String s = new StringBuilder(""+u.getSex()).append(",").append(u.getAge()).append(",").append(u.getCountry()).append(",").append(u.getProduct().getName()).append(",").toString();
+            String s = new StringBuilder(""+u.getSex()).append(",").append(u.getAge()).append(",").append(u.getCountry()).append(",").append(u.getProduct().getName()).append(",\n").toString();
             for (int j = 0; j < users.get(i).getAmount(); j++) {
                 result.add(s);
             }
