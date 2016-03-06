@@ -1,6 +1,8 @@
 package logic;
 
+
 import net.sf.javaml.core.DenseInstance;
+
 import net.sf.javaml.core.Instance;
 
 import java.io.BufferedWriter;
@@ -57,7 +59,6 @@ public class StatisticsAnalyzer {
 
 //        Dataset data = FileHandler.loadDataset(new File("C:\\Users\\Администратор\\Desktop\\iris.data"), 4, ",");
 
-
         String[] prediction = analyzer.getCategories(new double[]{100, 55, 200}, 8);
         for (String s : prediction) {
             System.out.println(s);
@@ -70,10 +71,6 @@ public class StatisticsAnalyzer {
 //                }
 //            }
 //        }
-
-//        Classifier knn = new KNearestNeighbors(5);
-//        knn.buildClassifier(data);
-//        System.out.println(knn.classify(new DenseInstance(new double[]{2.1, 1.2, 6.2, 0.2})));
     }
 }
 

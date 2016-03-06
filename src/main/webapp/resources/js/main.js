@@ -20,6 +20,7 @@ function scrolling(to) {
 }
 
 function printAges(sex) {
+    var age = 0;
     const ages = ["<6", "6-10", "10-15", "15-18", "18-30", "30-40", "40-50", ">50"];
     $("#age").css({"display": "block"});
     var image = document.getElementById("age-image");
@@ -31,7 +32,7 @@ function printAges(sex) {
     if (sex) {
         str = "boy";
     } else {
-        str = "girl"
+        str = "girl";
     }
     var div;
     var innerDiv;
@@ -41,13 +42,49 @@ function printAges(sex) {
         div.setAttribute("class", "col-sm-3");
         innerDiv = document.createElement("div");
         innerDiv.setAttribute("class", "age-images");
+        innerDiv.setAttribute("id", "age" + i);
+        $("#age" + i).click(function () {
+            age = this.i;
+        });
         $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.PNG")'});
         div.appendChild(innerDiv);
         div.innerHTML += '<h3>' + ages[i - 1] + '</h3>';
         image.appendChild(div);
     }
+    if (sex) {
+        $(".age-images").css({"border": "2px solid #96d6eb"});
+        $(".age-images").hover(function () {
+            $(this).css("background-color", "#51bcc3");
+        }, function () {
+            $(this).css("background-color", "");
+        });
+    } else {
+        $(".age-images").css({"border": "2px solid #f3bb11"});
+        $(".age-images").hover(function () {
+            $(this).css("background-color", "#e0ed8e");
+        }, function () {
+            $(this).css("background-color", "");
+        });
+    }
+    $(".age-images").css({"cursor": "pointer"});
     scrolling("#age-text");
-    JsonRequest(sex, 20, 200);
+
+
+    $(".age-images").click(function () {
+        $("#country").css({"display": "block"});
+        var text = document.getElementById("country-text");
+        text.innerHTML = "";
+        text.appendChild(document.createTextNode('From Where?'));
+        scrolling("#country");
+    });
+
+    $("#ukraine").click(function () {
+        JsonRequest(sex, age, 0);
+    })
+    $("#russia").click(function () {
+        JsonRequest(sex, age, 1);
+    })
+
 
 }
 
@@ -55,3 +92,4 @@ function printAges(sex) {
 function addNoise() {
     $("#noise").css({"height": "" + $(document).height()});
 }
+

@@ -18,7 +18,6 @@ public class Predictor {
     private static double ageWeigter = 0.5;
     private static double countryWeigter = 0.3;
 
-
     private static final Predictor instance = new Predictor();
 
     private GenericDao productDao;

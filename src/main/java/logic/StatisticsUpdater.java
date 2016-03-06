@@ -131,6 +131,7 @@ public class StatisticsUpdater implements Runnable {
 //            if(users.get(i).getProduct().getIdProduct() == 10 || users.get(i).getProduct().getIdProduct() == 5)
 //                continue;
             User u = users.get(i);
+
             for (String s : categories) {
                 if (u.getProduct().getName().equals(s))
                     continue a;
