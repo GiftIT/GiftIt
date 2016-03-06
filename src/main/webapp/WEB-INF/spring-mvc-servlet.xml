@@ -8,7 +8,7 @@
     <!--<bean id="serverInit" class="utilitiesfoserver.StatisticInit" init-method="runStatistiCollector"/>-->
 
 
-    <!--<context:component-scan base-package="controller"/>-->
+    <context:component-scan base-package="controller"/>
 
     <mvc:annotation-driven/>
 
