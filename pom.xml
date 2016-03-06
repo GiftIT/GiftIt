@@ -103,6 +103,23 @@
             <version>1.7.2</version>
         </dependency>
 
+
+        <dependency>
+            <groupId>ajt</groupId>
+            <artifactId>ajt</artifactId>
+            <version>2.11</version>
+            <scope>system</scope>
+            <systemPath>/home/vitaliy/Downloads/ajt-2.11.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>javaml</groupId>
+            <artifactId>javaml</artifactId>
+            <version>0.1.17</version>
+            <scope>system</scope>
+            <systemPath>/home/vitaliy/Downloads/javaml-0.1.7.jar</systemPath>
+        </dependency>
+
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
@@ -123,7 +140,9 @@
 
     </dependencies>
 
+
     <build>
+
         <plugins>
 
             <plugin>

@@ -1,5 +1,8 @@
 package logic;
 
+
+import net.sf.javaml.core.DenseInstance;
+
 import net.sf.javaml.core.Instance;
 
 import java.io.BufferedWriter;
@@ -18,9 +21,9 @@ public class StatisticsAnalyzer {
         this.src = src;
     }
 
-    public void learn() throws IOException {
-        statisticsUpdater.run();
-        String[] userData = statisticsUpdater.getData();
+    public void learn(String... categories) throws IOException {
+//        statisticsUpdater.run();
+        String[] userData = statisticsUpdater.getData(categories);
         int length = userData.length;
         File file = new File(src);
         BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -38,4 +41,36 @@ public class StatisticsAnalyzer {
     public Object classify(Instance instance) {
         return classificationProcessor.classify(instance);
     }
+
+    public String[] getCategories(double[] data, int amount) throws IOException {
+        String[] result = new String[amount];
+        Instance instance = new DenseInstance(data);
+        for (int i = 0; i < amount; i++) {
+            learn(result);
+            String cat = (String) classify(instance);
+            result[i] = cat;
+        }
+        return result;
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        StatisticsAnalyzer analyzer = new StatisticsAnalyzer(new StatisticsUpdater(), new ClassificationProcessor(), "/home/vladislav/data.data");
+
+//        Dataset data = FileHandler.loadDataset(new File("C:\\Users\\Администратор\\Desktop\\iris.data"), 4, ",");
+
+        String[] prediction = analyzer.getCategories(new double[]{100, 55, 200}, 8);
+        for (String s : prediction) {
+            System.out.println(s);
+        }
+//        for(int i = 0; i <= 1; i++){
+//            for(int j = 1; j <= 50; j++){
+//                for(int k = 1; k < 3; k++) {
+//                    Object o = analyzer.classify(new DenseInstance(new double[]{i*100, j, k*100}));
+//                    System.out.println(i + ", " + j + ", " + k + " = " + o);
+//                }
+//            }
+//        }
+    }
 }
+

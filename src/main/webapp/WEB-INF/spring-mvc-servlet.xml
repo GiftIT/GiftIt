@@ -8,7 +8,7 @@
     <!--<bean id="serverInit" class="utilitiesfoserver.StatisticInit" init-method="runStatistiCollector"/>-->
 
 
-    <!--<context:component-scan base-package="controller"/>-->
+    <context:component-scan base-package="controller"/>
 
     <mvc:annotation-driven/>
 
@@ -19,6 +19,16 @@
         <property name="suffix">
             <value>.html</value>
         </property>
+    </bean>
+
+    <bean id="statisticUpdater" class="logic.StatisticsUpdater"/>
+
+    <bean id="classificationProcessor" class="logic.ClassificationProcessor"/>
+
+    <bean id="statisticsAnalyzer" class="logic.StatisticsAnalyzer">
+        <constructor-arg name="classificationProcessor" ref="classificationProcessor"/>
+        <constructor-arg name="statisticsUpdater" ref="statisticUpdater"/>
+        <constructor-arg name="src" value="/home/vitaliy/data.data"/>
     </bean>
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
