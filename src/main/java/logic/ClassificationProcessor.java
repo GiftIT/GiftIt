@@ -25,11 +25,11 @@ public class ClassificationProcessor implements DataProcessor {
         nmr.build(data);
 
         classifier.buildClassifier(data);
-        Dataset dataForClassification = FileHandler.loadDataset(file, columnNumber, ",");
-
-        Map<Object, PerformanceMeasure> pm = EvaluateDataset.testDataset(classifier, dataForClassification);
-        for (Object o : pm.keySet())
-            System.out.println(o + ": " + pm.get(o).getAccuracy());
+//        Dataset dataForClassification = FileHandler.loadDataset(file, columnNumber, ",");
+//
+//        Map<Object, PerformanceMeasure> pm = EvaluateDataset.testDataset(classifier, dataForClassification);
+//        for (Object o : pm.keySet())
+//            System.out.println(o + ": " + pm.get(o).getAccuracy());
     }
 
 

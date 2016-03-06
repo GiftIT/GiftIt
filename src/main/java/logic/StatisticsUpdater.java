@@ -10,10 +10,7 @@ import model.utility.GenericDao;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Updates statistics
@@ -121,14 +118,21 @@ public class StatisticsUpdater implements Runnable {
         System.out.println(1.0 * deleted / all);
     }
 
-    public String[] getData() {
+    public String[] getData(String... categories) {
+        if(categories == null){
+            categories = new String[0];
+        }
         GenericDao dao = (GenericDao) context.getBean("userDao");
         List<User> users = dao.findAll();
         List<String> result = new LinkedList<>();
-        for (int i = 0; i < users.size(); i++) {
+ a:     for (int i = 0; i < users.size(); i++) {
 //            if(users.get(i).getProduct().getIdProduct() == 10 || users.get(i).getProduct().getIdProduct() == 5)
 //                continue;
             User u = users.get(i);
+            for(String s : categories){
+                if(u.getProduct().getName().equals(s))
+                    continue a;
+            }
             String s = new StringBuilder(""+u.getSex()).append(",").append(u.getAge()).append(",").append(u.getCountry()).append(",").append(u.getProduct().getName()).append(",\n").toString();
             for (int j = 0; j < users.get(i).getAmount(); j++) {
                 result.add(s);
