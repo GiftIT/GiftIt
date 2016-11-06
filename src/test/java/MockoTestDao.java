@@ -51,22 +51,30 @@ public class MockoTestDao {
     @Test
     public void testNullReturnIfNoDataFound() {
         List all = new LinkedList();
-
         List<Product> allProducts = productDao.findAll();
         for (Product product : allProducts) {
             productDao.delete(product);
         }
-
         //return mocked result set on find
         when(productDao.findAll()).thenReturn(all);
-
         //call the main method you want to test
         List result = productDao.findAll();
-
         //verify the method was called
         verify(productDao, new Times(2)).findAll();
-
         //verify null result was returned
         assertEquals(0, result.size());
     }
+
+
+    @Test
+    public void testDaoCalledOnlyOnce() {
+        List all = new LinkedList();
+        when(productDao.findAll()).thenReturn(all);
+        productDao.findAll();
+        verify(productDao, times(1)).findAll();
+        verify(productDao, atMost(1)).findAll();
+        verify(productDao, atLeast(1)).findAll();
+    }
+
+
 }
