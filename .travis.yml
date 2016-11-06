@@ -6,7 +6,9 @@ addons:
   apt:
     packages:
       - oracle-java8-installer
-script: mvn clean verify
+script: 
+  - mvn clean verify
+  - mvn checkstyle:checkstyle
 
 services:
 - mysql
