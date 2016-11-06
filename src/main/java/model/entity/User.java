@@ -2,9 +2,7 @@ package model.entity;
 
 import javax.persistence.*;
 
-/**
- * Created by vladislav on 3/5/16.
- */
+
 @Entity
 public class User {
 
