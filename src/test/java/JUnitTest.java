@@ -33,4 +33,14 @@ public class JUnitTest {
         List<Product> allProduct = productDao.findAll();
         assertTrue(!allProduct.isEmpty());
     }
+    
+    @Test
+    public void checkUpdateOperation() {
+        Product product = new Product("phone");
+        productDao.create(product);
+        product.setName("mobilephone");
+        product.setPosts(1000);
+        productDao.update(product);
+        assertEquals(productDao.find("mobilephone"), product);
+    }
 }
