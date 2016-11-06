@@ -6,7 +6,7 @@
 
     <groupId>ua.giftIT</groupId>
     <artifactId>giftIT</artifactId>
-    <version>1.0</version>
+    <version>1.1.0</version>
     <packaging>war</packaging>
     <properties>
         <spring.version>4.1.6.RELEASE</spring.version>
@@ -140,11 +140,23 @@
 
     </dependencies>
 
+    <scm>
+        <connection>scm:git:https://github.com/vetalbabenko/GiftIT.git</connection>
+        <developerConnection>scm:git:https://github.com/vetalbabenko/GiftIT.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/vetalbabebko/GiftIT.git</url>
+    </scm>
 
     <build>
 
-        <plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
 
+        <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -160,6 +172,26 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.6</version>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>buildnumber-maven-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>create</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <doCheck>false</doCheck>
+                    <doUpdate>false</doUpdate>
+                </configuration>
+            </plugin>
+
+
         </plugins>
     </build>
 
