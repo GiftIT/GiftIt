@@ -109,7 +109,7 @@
             <artifactId>ajt</artifactId>
             <version>2.11</version>
             <scope>system</scope>
-            <systemPath>/home/vitaliy/Downloads/ajt-2.11.jar</systemPath>
+            <systemPath>${basedir}/src/lib/ajt-2.11.jar</systemPath>
         </dependency>
 
         <dependency>
@@ -117,7 +117,7 @@
             <artifactId>javaml</artifactId>
             <version>0.1.17</version>
             <scope>system</scope>
-            <systemPath>/home/vitaliy/Downloads/javaml-0.1.7.jar</systemPath>
+            <systemPath>${basedir}/src/lib/javaml-0.1.7.jar</systemPath>
         </dependency>
 
         <dependency>
