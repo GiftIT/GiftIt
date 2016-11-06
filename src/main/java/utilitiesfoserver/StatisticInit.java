@@ -4,9 +4,7 @@ import logic.StatisticsUpdater;
 
 import java.util.Map;
 
-/**
- * Created by Babenko on 16.12.2015.
- */
+
 public class StatisticInit  {
 
     public static void main(String[] args) {
