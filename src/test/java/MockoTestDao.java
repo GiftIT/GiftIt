@@ -69,4 +69,13 @@ public class MockoTestDao {
         //verify null result was returned
         assertEquals(0, result.size());
     }
+    
+    @Test
+    public void testResponsesOnFind() {
+        when(productDao.find("cars")).thenReturn(new Product("cars"));
+        Product found = productDao.find("cars");
+        assertEquals("cars", found.getName());
+        Product notFound = productDao.find("candy");
+        assertNull(notFound);
+    }
 }
