@@ -11,6 +11,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.mockito.Mockito.*;
 
 public class MockoTestDao {
@@ -74,6 +75,12 @@ public class MockoTestDao {
         verify(productDao, times(1)).findAll();
         verify(productDao, atMost(1)).findAll();
         verify(productDao, atLeast(1)).findAll();
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testServerErrorReturnedOnFailedUpdate() {
+        when(productDao.find("cars")).thenThrow(new RuntimeException("DB Failed"));
+        Product r = productDao.find("cars");
     }
 
 

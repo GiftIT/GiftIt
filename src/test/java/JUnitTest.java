@@ -8,8 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class JUnitTest {
     static ApplicationContext applicationContext = new ClassPathXmlApplicationContext("db.xml");
@@ -54,6 +53,18 @@ public class JUnitTest {
         List<Product> allProduct = productDao.findAll();
         assertTrue(allProduct.isEmpty());
     }
+
+
+    @Test
+    public void checkDeleteOperation() {
+        Product product = new Product("food");
+        productDao.create(product);
+        assertNotNull(productDao.find("food"));
+        productDao.delete(product);
+        assertNull(productDao.find("food"));
+    }
+
+
 
 
 }
