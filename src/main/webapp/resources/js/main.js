@@ -45,7 +45,7 @@ function printAges(sex) {
         innerDiv.className += " age";
         innerDiv.setAttribute("id", "age" + i);
         innerDiv.setAttribute("i",i);
-        $(innerDiv).css({"background-image": 'url("../img/' + (str + i) + '.png")'});
+        $(innerDiv).css({"background-image": 'url("../resources/img/' + (str + i) + '.png")'});
         div.appendChild(innerDiv);
         div.innerHTML += '<h3>' + ages[i - 1] + '</h3>';
         image.appendChild(div);

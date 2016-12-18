@@ -2,6 +2,9 @@
 Instructions for running project
 Foreword All steps are provided according to Intellij IDEA.
 
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
+
+
 First of all verify whether you install: JDK 1.8, Tomcat8, maven, mysql; if yes, let's run application
 
 1. Go to main/resources and set up db properties which is established in your data base.
