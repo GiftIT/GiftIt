@@ -2,9 +2,6 @@
 Instructions for running project
 Foreword All steps are provided according to Intellij IDEA.
 
-docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.7
-
-
 First of all verify whether you install: JDK 1.8, Tomcat8, maven, mysql; if yes, let's run application
 
 1. Go to main/resources and set up db properties which is established in your data base.
@@ -19,3 +16,14 @@ i.e - in Intelije IDEA click on your project and choose setting menu, then choos
 4. Check your project for compilation error, if everything is OK, configure your tomcat server in IDEA. Click  on edit configuration=>click on green plus in left-right corner=> choose TOMCAT EE SERVER=> remain all configuration by default=>go to Deployment and add artifact giftIT:war exploded.
 
 5. After that run your application and provding of successful deployment you will be redirected to main page of project(index.html)
+
+TO run build and run docker
+docker build -t name .
+docker run -i -t -p8080:8080 name
+and then
+    service tomcat7 start
+it will start your very own tomcat instance on docker with this project
+
+to access it go to
+    localhost:8080
+Profit. You are awesome!
