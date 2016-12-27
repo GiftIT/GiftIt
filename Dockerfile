@@ -25,7 +25,7 @@ ADD ./server.xml /usr/share/tomcat7/conf/server.xml
 EXPOSE 8080
 
 
-
+RUN apt-get -y update
 RUN apt-get install maven -y
 RUN apt-get install git -y
 
@@ -33,9 +33,9 @@ ADD table.sql /opt/table.sql
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install mysql-server \
     &&  service mysql start \
-    &&  mysqladmin -u root password root \
-    &&  mysql -u root -proot < /opt/table.sql
-RUN mysqld &
+    &&  mysqladmin -u root password "" \
+    &&  mysql -u root < /opt/table.sql
+#RUN mysqld &
 ADD pom.xml /app/
 ADD src/ /app/src
 #ADD table.sql /opt/table.sql
