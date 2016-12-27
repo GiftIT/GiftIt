@@ -25,7 +25,7 @@ public abstract class HttpUrlConnection {
 
     private String apiAddress;
 
-    protected HttpUrlConnection(String apiAddress){
+    protected HttpUrlConnection(String apiAddress) {
         this.apiAddress = apiAddress;
     }
 
@@ -100,7 +100,7 @@ public abstract class HttpUrlConnection {
 
     /**
      * Performs GET request to the server
-     * If server does not correspond, tries to connect 5 times with 50 ms interval
+     * If server does not correspond, tries to connect with exponential backoff
      * @param request text which send to the server
      * @return response from the server or empty string if error
      */
@@ -113,17 +113,19 @@ public abstract class HttpUrlConnection {
             con.setRequestMethod("GET");
             con.setRequestProperty("User-Agent", USER_AGENT);
 
-            BufferedReader in=null;
-            int times = 0;
-            while(in == null && times <= 3) {
+            BufferedReader in = null;
+            int sleepTime = 100;
+            final int maxSleepTime = 3600;
+            while (in == null && sleepTime <= maxSleepTime) {
                 try {
                     //if server does not correspond this line will produce an exception
-                    in = new BufferedReader(new InputStreamReader(con.getInputStream(),"UTF-8"));
-                }catch (IOException e){
-                    times++;
-                    System.out.println("Cannot create input stream. " + times + " times attempt. Trying again after 100 ms");
+                    in = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
+                } catch (IOException e) {
+                    sleepTime *= 2;
+                    System.out.println("Cannot create input stream." +
+                            "Trying again with exponential backoff in " + sleepTime + "ms");
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(sleepTime);
                     } catch (InterruptedException e1) {
                         e1.printStackTrace();
                     }
